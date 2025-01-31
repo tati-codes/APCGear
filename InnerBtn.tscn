@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm2f1knkxd60k"]
+
+[ext_resource type="Texture2D" uid="uid://cavw5gngsnndp" path="res://off.png" id="1_t02s6"]
+[ext_resource type="Texture2D" uid="uid://dcsscnjng5pk2" path="res://off_pressed.png" id="2_mfv68"]
+[ext_resource type="Script" path="res://InnerBtn.cs" id="3_f5a4j"]
+
+[node name="InnerButton" type="TextureButton"]
+offset_right = 32.0
+offset_bottom = 32.0
+texture_normal = ExtResource("1_t02s6")
+texture_pressed = ExtResource("2_mfv68")
+script = ExtResource("3_f5a4j")
