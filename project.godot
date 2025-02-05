@@ -11,9 +11,18 @@ config_version=5
 [application]
 
 config/name="APCGear"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="APCGear"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg")
+
+[navigation]
+
+3d/default_font_subpixel_positioning=1
+3d/dynamic_fonts/use_oversampling=true

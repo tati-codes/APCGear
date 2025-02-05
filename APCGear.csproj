@@ -5,4 +5,18 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="APC-Handler\" />
+    <Folder Include="OBS\" />
+    <Folder Include="plugins\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="InputSimulator" Version="1.0.4" />
+    <PackageReference Include="Melanchall.DryWetMidi" Version="7.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="APCMiniHandler">
+      <HintPath>..\..\c#\APCMiniHandler\bin\Debug\net8.0\APCMiniHandler.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>
