@@ -17,6 +17,7 @@ offset_bottom = 40.0
 
 [node name="Row0" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 48
 
 [node name="InnerButton" parent="VBoxContainer/Row0" instance=ExtResource("1_6a43r")]
 layout_mode = 2
@@ -52,6 +53,7 @@ id = 63
 
 [node name="Row1" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 48
 
 [node name="InnerButton" parent="VBoxContainer/Row1" instance=ExtResource("1_6a43r")]
 layout_mode = 2
@@ -87,6 +89,7 @@ id = 55
 
 [node name="Row2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 48
 
 [node name="InnerButton" parent="VBoxContainer/Row2" instance=ExtResource("1_6a43r")]
 layout_mode = 2
@@ -122,6 +125,7 @@ id = 47
 
 [node name="Row3" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 48
 
 [node name="InnerButton" parent="VBoxContainer/Row3" instance=ExtResource("1_6a43r")]
 layout_mode = 2
@@ -157,6 +161,7 @@ id = 39
 
 [node name="Row4" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 48
 
 [node name="InnerButton" parent="VBoxContainer/Row4" instance=ExtResource("1_6a43r")]
 layout_mode = 2
@@ -192,6 +197,7 @@ id = 31
 
 [node name="Row5" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 48
 
 [node name="InnerButton" parent="VBoxContainer/Row5" instance=ExtResource("1_6a43r")]
 layout_mode = 2
@@ -227,6 +233,7 @@ id = 23
 
 [node name="Row6" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 48
 
 [node name="InnerButton" parent="VBoxContainer/Row6" instance=ExtResource("1_6a43r")]
 layout_mode = 2
@@ -262,6 +269,7 @@ id = 15
 
 [node name="Row7" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 48
 
 [node name="InnerButton" parent="VBoxContainer/Row7" instance=ExtResource("1_6a43r")]
 layout_mode = 2
