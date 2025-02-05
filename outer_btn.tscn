@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmhd2wcq57ouh"]
+
+[ext_resource type="Texture2D" uid="uid://cruh1j4ok8v34" path="res://assets/silver-!blank.png" id="1_hicta"]
+[ext_resource type="Texture2D" uid="uid://dpy5plkcecjb" path="res://assets/silver-blank-pushed.png" id="2_0iks1"]
+[ext_resource type="Texture2D" uid="uid://byxcuafyq7ul2" path="res://assets/silver-!hover.png" id="3_kjxfj"]
+[ext_resource type="Script" path="res://OuterBtn.cs" id="4_43nnh"]
+
+[node name="OuterBtn" type="TextureButton"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_hicta")
+texture_pressed = ExtResource("2_0iks1")
+texture_hover = ExtResource("3_kjxfj")
+script = ExtResource("4_43nnh")

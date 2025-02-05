@@ -1,0 +1,130 @@
+[gd_scene load_steps=3 format=3 uid="uid://qkgiggm1v8lo"]
+
+[ext_resource type="PackedScene" uid="uid://cmhd2wcq57ouh" path="res://outer_btn.tscn" id="1_c2cyv"]
+[ext_resource type="FontFile" uid="uid://dn5sep1u4srg5" path="res://assets/fonts/Boxy-Bold-Font/Boxy-Bold.ttf" id="2_7jo78"]
+
+[node name="Control" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 6.0
+offset_right = -1122.0
+offset_bottom = -246.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="CLIP STOP" parent="." instance=ExtResource("1_c2cyv")]
+layout_mode = 2
+id = 82
+
+[node name="CLIP STOP" type="Label" parent="CLIP STOP"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 4.0
+offset_right = 188.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_7jo78")
+theme_override_font_sizes/font_size = 20
+text = "clip stop"
+
+[node name="solo" parent="." instance=ExtResource("1_c2cyv")]
+layout_mode = 2
+id = 83
+
+[node name="solo" type="Label" parent="solo"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 4.0
+offset_right = 188.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_7jo78")
+theme_override_font_sizes/font_size = 20
+text = "solo
+"
+
+[node name="rec arm" parent="." instance=ExtResource("1_c2cyv")]
+layout_mode = 2
+id = 84
+
+[node name="rec" type="Label" parent="rec arm"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 4.0
+offset_right = 188.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_7jo78")
+theme_override_font_sizes/font_size = 20
+text = "rec
+"
+
+[node name="mute" parent="." instance=ExtResource("1_c2cyv")]
+layout_mode = 2
+id = 85
+
+[node name="mute" type="Label" parent="mute"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 4.0
+offset_right = 188.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_7jo78")
+theme_override_font_sizes/font_size = 20
+text = "mute"
+
+[node name="select" parent="." instance=ExtResource("1_c2cyv")]
+layout_mode = 2
+id = 86
+
+[node name="select" type="Label" parent="select"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 4.0
+offset_right = 188.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_7jo78")
+theme_override_font_sizes/font_size = 20
+text = "select"
+
+[node name="top" parent="." instance=ExtResource("1_c2cyv")]
+layout_mode = 2
+id = 87
+
+[node name="top" type="Label" parent="top"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 4.0
+offset_right = 188.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_7jo78")
+theme_override_font_sizes/font_size = 20
+text = "top"
+
+[node name="bot" parent="." instance=ExtResource("1_c2cyv")]
+layout_mode = 2
+id = 88
+
+[node name="bot" type="Label" parent="bot"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 4.0
+offset_right = 188.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_7jo78")
+theme_override_font_sizes/font_size = 20
+text = "bottom"
+
+[node name="stop all" parent="." instance=ExtResource("1_c2cyv")]
+layout_mode = 2
+id = 89
+
+[node name="stop all" type="Label" parent="stop all"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 4.0
+offset_right = 188.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_7jo78")
+theme_override_font_sizes/font_size = 20
+text = "stop all"
