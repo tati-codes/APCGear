@@ -1,3 +1,5 @@
+using APCGear.APCOut;
+using APCGear.UI;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -23,7 +25,8 @@ public partial class OuterBtn : TextureButton
 
     public override void _Ready()
     {
-        this.AddToGroup("subscribed_to_store");
+        Bus.Subscribe<BtnPressedEvent, BtnPressedEventArgs>((BtnPressedEventArgs args) => check_id(args.Id, _Pressed));
+        Bus.Subscribe<BtnReleasedEvent, BtnReleasedEventArgs>((BtnReleasedEventArgs args) => check_id(args.Id, _Released));
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,6 +34,17 @@ public partial class OuterBtn : TextureButton
     {
         base._Pressed();
         GD.Print(id);
-        EmitSignal(nameof(OuterBtnPressed), id);
+    }
+    public void _Released()
+    {
+        GD.Print(id, " released");
+        Bus.Publish<BtnSelectedEvent, BtnSelectedEventArgs>(new BtnSelectedEventArgs() { id = id});
+    }
+    public void check_id(int args_id, System.Action callback)
+    {
+        if (args_id == id)
+        {
+            callback();
+        }
     }
 }
