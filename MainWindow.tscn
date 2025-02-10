@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ndqywo7ue6qn"]
+[gd_scene load_steps=15 format=3 uid="uid://ndqywo7ue6qn"]
 
 [ext_resource type="Texture2D" uid="uid://3i5ffk853yf3" path="res://assets/background.png" id="1_51r2i"]
 [ext_resource type="PackedScene" uid="uid://cxraogioys3do" path="res://InnerBtnContainer.tscn" id="1_qunxc"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://qkgiggm1v8lo" path="res://RightSideOuterButtons.tscn" id="3_t5nki"]
 [ext_resource type="PackedScene" uid="uid://yw6wimanmovr" path="res://BottomOuterBtns.tscn" id="4_qyp5j"]
 [ext_resource type="FontFile" uid="uid://dn5sep1u4srg5" path="res://assets/fonts/Boxy-Bold-Font/Boxy-Bold.ttf" id="6_hqc16"]
+[ext_resource type="Script" path="res://ShortcutsPanelMainWindow.cs" id="7_gsylp"]
+[ext_resource type="PackedScene" uid="uid://bsredtxkjo5av" path="res://KeyPicker.tscn" id="8_a54is"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j1cr1"]
 texture = ExtResource("1_51r2i")
@@ -46,6 +48,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="Theme" id="Theme_hlr6v"]
+
 [node name="RootPanel" type="Panel"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,10 +61,10 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_j1cr1")
 
 [node name="InnerBtn Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 26.0
-offset_right = 651.0
-offset_bottom = 317.0
+offset_left = 57.0
+offset_top = 57.0
+offset_right = 678.0
+offset_bottom = 348.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_chkyd")
 
 [node name="InnerBtns" parent="InnerBtn Panel" instance=ExtResource("1_qunxc")]
@@ -72,24 +76,24 @@ offset_bottom = -20.0
 
 [node name="OuterBtnsRight" parent="." instance=ExtResource("3_t5nki")]
 layout_mode = 1
-offset_left = 660.0
-offset_top = 25.0
-offset_right = -457.0
-offset_bottom = -227.0
+offset_left = 814.0
+offset_top = 101.0
+offset_right = -303.0
+offset_bottom = -151.0
 
 [node name="BottomBtns" parent="." instance=ExtResource("4_qyp5j")]
 layout_mode = 1
-offset_left = 27.0
-offset_top = 355.0
-offset_right = -514.0
-offset_bottom = -261.0
+offset_left = 90.0
+offset_top = 586.0
+offset_right = -451.0
+offset_bottom = -30.0
 
 [node name="Volume Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 394.0
-offset_right = 848.0
-offset_bottom = 616.0
+offset_left = 48.0
+offset_top = 668.0
+offset_right = 869.0
+offset_bottom = 890.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_qhe2x")
 
 [node name="Volumes" parent="Volume Panel" instance=ExtResource("2_fep41")]
@@ -104,23 +108,57 @@ offset_bottom = 167.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="Panel" type="TabContainer" parent="."]
-layout_mode = 0
-offset_left = 864.0
-offset_top = 29.0
-offset_right = 1109.0
-offset_bottom = 319.0
+[node name="OBS" type="TabContainer" parent="."]
+layout_mode = 2
+offset_left = 1002.0
+offset_top = 668.0
+offset_right = 1777.0
+offset_bottom = 890.0
 theme = SubResource("Theme_0q1b7")
 theme_override_fonts/font = ExtResource("6_hqc16")
 theme_override_font_sizes/font_size = 17
 theme_override_styles/panel = SubResource("StyleBoxFlat_rib3x")
-current_tab = 1
+current_tab = 0
+tabs_visible = false
 
-[node name="Shortcuts" type="Panel" parent="Panel"]
-visible = false
+[node name="Connect" type="Panel" parent="OBS"]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="OBS" type="Panel" parent="Panel"]
+[node name="Volume" type="Panel" parent="OBS"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="Panel" type="TabContainer" parent="."]
+layout_mode = 0
+offset_left = 1005.0
+offset_top = 29.0
+offset_right = 1782.0
+offset_bottom = 624.0
+theme = SubResource("Theme_0q1b7")
+theme_override_fonts/font = ExtResource("6_hqc16")
+theme_override_font_sizes/font_size = 17
+theme_override_styles/panel = SubResource("StyleBoxFlat_rib3x")
+tab_alignment = 1
+current_tab = 0
+
+[node name="Shortcuts" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+script = ExtResource("7_gsylp")
+child = ExtResource("8_a54is")
+metadata/_tab_index = 0
+
+[node name="Container" parent="Panel/Shortcuts" instance=ExtResource("8_a54is")]
+layout_mode = 2
+
+[node name="OBS" type="MarginContainer" parent="Panel"]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_hlr6v")
+metadata/_tab_index = 1
+
+[node name="Color" type="Panel" parent="Panel"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

@@ -11,8 +11,20 @@ config_version=5
 [application]
 
 config/name="APCGear"
+run/main_scene="res://MainWindow.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Bus="*res://Bus.cs"
+State="*res://State.cs"
+Pad="*res://Pad.cs"
+
+[display]
+
+window/size/viewport_width=1820
+window/size/viewport_height=980
 
 [dotnet]
 
@@ -24,5 +36,6 @@ enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/To
 
 [navigation]
 
+avoidance/thread_model/avoidance_use_multiple_threads=false
 3d/default_font_subpixel_positioning=1
 3d/dynamic_fonts/use_oversampling=true

@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "APCGear": {
+      "commandName": "Project",
+      "commandLineArgs": "--path .",
+      "workingDirectory": "A:\\code\\projects\\godot\\apcgear"
+    },
+    "Goddot Debug": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Godot Engine\\godot.windows.opt.tools.64.exe",
+      "commandLineArgs": "--path .",
+      "workingDirectory": "."
+    }
+  }
+}
