@@ -10,6 +10,7 @@ using APCGear.KeyAction;
 using WindowsInput;
 using APCGear.APCOut;
 using APCGear.Color;
+using APCGear.UI;
 
 public partial class State : Node
 {
@@ -44,6 +45,7 @@ public partial class State : Node
             default:
                 break;
         }
+        Bus.Publish<ChangeColorInUiEvent, BtnSelectedEventArgs>(new BtnSelectedEventArgs() { id = args.Id});
     }
     public void pasteText(TextEventArgs args) => Keyboard.pasteText(args.text);
     public void setButtonColor(ColorTransitions transitions)
@@ -60,6 +62,7 @@ public partial class State : Node
             default:
                 break;
         }
+        Bus.Publish<ChangeColorInUiEvent, BtnSelectedEventArgs>(new BtnSelectedEventArgs() { id = selected_btn });
     }
 }
 

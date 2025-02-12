@@ -26,52 +26,45 @@ public partial class InnerBtn : TextureButton
     private static Dictionary<inner_state, (CompressedTexture2D normal, CompressedTexture2D pressed)> buttonTexts = new Dictionary<inner_state, (CompressedTexture2D normal, CompressedTexture2D pressed)>() {
         [inner_state.OFF] = (normal: GD.Load<CompressedTexture2D>("res://assets/off.png"), pressed: GD.Load<CompressedTexture2D>("res://assets/off_pressed.png")),
         [inner_state.GREEN] = (normal: GD.Load<CompressedTexture2D>("res://assets/green.png"), pressed: GD.Load<CompressedTexture2D>("res://assets/green_pressed.png")),
+        [inner_state.YELLOW_BLINK] = (normal: GD.Load<CompressedTexture2D>("res://assets/yellow_blink.png"), pressed: GD.Load<CompressedTexture2D>("res://assets/yellow_pressed.png")),
+        [inner_state.RED_BLINK] = (normal: GD.Load<CompressedTexture2D>("res://assets/red_blink.png"), pressed: GD.Load<CompressedTexture2D>("res://assets/red_pressed.png")),
+        [inner_state.GREEN_BLINK] = (normal: GD.Load<CompressedTexture2D>("res://assets/green_blink.png"), pressed: GD.Load<CompressedTexture2D>("res://assets/green_pressed.png")),
         [inner_state.RED] = (normal: GD.Load<CompressedTexture2D>("res://assets/red.png"), pressed: GD.Load<CompressedTexture2D>("res://assets/red_pressed.png")),
         [inner_state.YELLOW] = (normal: GD.Load<CompressedTexture2D>("res://assets/yellow.png"), pressed: GD.Load<CompressedTexture2D>("res://assets/yellow_pressed.png")),
     };
 
-    [Export]
-    public inner_state color { get {
-            return this._color;
-        } set {
-            this._color = value;
-            this.change_color(this._color);
-        }  
-    }   
-
-    [Signal]
-    public delegate void BtnPressedEventHandler(int id);
-    
-    [Signal]
-    public delegate void BtnReleasedEventHandler(int id);
 
     public override void _Ready()
 	{
-        Bus.Subscribe<BtnPressedEvent, BtnPressedEventArgs>((BtnPressedEventArgs args) => check_id(args.Id,_Pressed));
-        Bus.Subscribe<BtnReleasedEvent, BtnReleasedEventArgs>((BtnReleasedEventArgs args) => check_id(args.Id, _Released));  
+        //Bus.Subscribe<BtnPressedEvent, BtnPressedEventArgs>((BtnPressedEventArgs args) => check_id(args.Id,_Pressed));
+        //Bus.Subscribe<BtnReleasedEvent, BtnReleasedEventArgs>((BtnReleasedEventArgs args) => check_id(args.Id, _Released));
+        Bus.Subscribe<BtnSelectedEvent, BtnSelectedEventArgs>((args) => check_id(args.id, () => Bus.Publish<BtnPublishPositionEvent, Position>(new() { pos = this.GlobalPosition })));
+        Bus.Subscribe<ChangeColorInUiEvent, BtnSelectedEventArgs>((args) => check_id(args.id, () => change_color()));
     }
 
-    private void change_color(inner_state new_color)
+    public void change_color()
     {
-        if (new_color == inner_state.GREEN || new_color == inner_state.RED || new_color == inner_state.YELLOW || new_color == inner_state.OFF) { 
-            this.TextureNormal = buttonTexts[new_color].normal;
-            this.TexturePressed = buttonTexts[new_color].pressed;
-        }
+        var new_color = (inner_state)State.Instance.buttons[id].colorTransitions.currentColor;
+
+        GD.Print("here");
+        //TODO make the ui change color
+        this.TextureNormal = buttonTexts[new_color].normal;
+        this.TexturePressed = buttonTexts[new_color].pressed;
     } 
     public override void _Pressed()
     {
-        GD.Print(id, " pressed");
+        Bus.Publish<BtnSelectedEvent, BtnSelectedEventArgs>(new BtnSelectedEventArgs() { id = id });
         base._Pressed();
     }
     public void _Released()
     {
         GD.Print(id, " released");
-        Bus.Publish<BtnSelectedEvent, BtnSelectedEventArgs>(new BtnSelectedEventArgs() { id = id });
     }
     public void check_id(int args_id, System.Action callback)
     {
         if (args_id == id)
         {
+            GD.Print("calling: ", args_id, " from: ", id);
             callback();
         }
     }

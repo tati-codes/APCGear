@@ -69,6 +69,13 @@ namespace APCGear {
     {
 
     }
+    public class ChangeColorInUiEvent: APCEvent<BtnSelectedEventArgs> { }
+
+    public class BtnPublishPositionEvent: APCEvent<Position> { }
+    public class Position: IAPCArgs
+        {
+            public Godot.Vector2 pos { get; set; }
+        }
 }
 
     namespace APCIn
