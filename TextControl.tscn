@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmnew0p7st0x3"]
+
+[ext_resource type="Script" path="res://TextControl.cs" id="1_7ayj7"]
+
+[node name="Text" type="Control" node_paths=PackedStringArray("button", "edit")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_7ayj7")
+button = NodePath("save")
+edit = NodePath("TextEdit")
+metadata/_tab_index = 3
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 2
+offset_left = 63.0
+offset_top = 33.0
+offset_right = 470.0
+offset_bottom = 473.0
+placeholder_text = "Your Text Goes Here"
+
+[node name="save" type="Button" parent="."]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 499.0
+offset_right = 308.0
+offset_bottom = 546.0
+text = "save"

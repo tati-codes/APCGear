@@ -29,13 +29,14 @@ public partial class Bus : Node
         where APCEventArgs : IAPCArgs
     {
         var presEvent = GetEvent<T, APCEventArgs>();
+        //GD.Print(presEvent);
         presEvent.Subscribe(action);
     }
     public static void Publish<T, APCEventArgs>(APCEventArgs args) where T : APCEvent<APCEventArgs>, new()
         where APCEventArgs : IAPCArgs
     {
         var presEvent = GetEvent<T, APCEventArgs>();
-        GD.Print(presEvent);
+        GD.Print("Firing: ",presEvent);
         presEvent.Publish(args);
     }
 

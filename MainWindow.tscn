@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ndqywo7ue6qn"]
+[gd_scene load_steps=17 format=3 uid="uid://ndqywo7ue6qn"]
 
 [ext_resource type="Texture2D" uid="uid://3i5ffk853yf3" path="res://assets/background.png" id="1_51r2i"]
 [ext_resource type="PackedScene" uid="uid://cxraogioys3do" path="res://InnerBtnContainer.tscn" id="1_qunxc"]
@@ -8,6 +8,8 @@
 [ext_resource type="FontFile" uid="uid://dn5sep1u4srg5" path="res://assets/fonts/Boxy-Bold-Font/Boxy-Bold.ttf" id="6_hqc16"]
 [ext_resource type="Script" path="res://ShortcutsPanelMainWindow.cs" id="7_gsylp"]
 [ext_resource type="PackedScene" uid="uid://bsredtxkjo5av" path="res://KeyPicker.tscn" id="8_a54is"]
+[ext_resource type="PackedScene" uid="uid://bmnew0p7st0x3" path="res://TextControl.tscn" id="9_0onam"]
+[ext_resource type="PackedScene" uid="uid://o5gfhcbo72yx" path="res://ColorControl.tscn" id="9_h1k36"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j1cr1"]
 texture = ExtResource("1_51r2i")
@@ -134,16 +136,17 @@ metadata/_tab_index = 1
 layout_mode = 0
 offset_left = 1005.0
 offset_top = 29.0
-offset_right = 1782.0
+offset_right = 1530.0
 offset_bottom = 624.0
 theme = SubResource("Theme_0q1b7")
 theme_override_fonts/font = ExtResource("6_hqc16")
 theme_override_font_sizes/font_size = 17
 theme_override_styles/panel = SubResource("StyleBoxFlat_rib3x")
 tab_alignment = 1
-current_tab = 0
+current_tab = 4
 
 [node name="Shortcuts" type="MarginContainer" parent="Panel"]
+visible = false
 layout_mode = 2
 script = ExtResource("7_gsylp")
 child = ExtResource("8_a54is")
@@ -162,3 +165,11 @@ metadata/_tab_index = 1
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
+
+[node name="Text" parent="Panel" instance=ExtResource("9_0onam")]
+visible = false
+layout_mode = 2
+
+[node name="Control" parent="Panel" instance=ExtResource("9_h1k36")]
+layout_mode = 2
+metadata/_tab_index = 4

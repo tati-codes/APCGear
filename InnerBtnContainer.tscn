@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxraogioys3do"]
+[gd_scene load_steps=4 format=3 uid="uid://cxraogioys3do"]
 
 [ext_resource type="PackedScene" uid="uid://cm2f1knkxd60k" path="res://InnerBtn.tscn" id="1_6a43r"]
+[ext_resource type="Texture2D" uid="uid://cl2fpf6av71hk" path="res://assets/selected.png" id="2_54dr6"]
+[ext_resource type="Script" path="res://Selected.cs" id="3_8627n"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -301,3 +303,13 @@ id = 6
 [node name="InnerButton8" parent="VBoxContainer/Row7" instance=ExtResource("1_6a43r")]
 layout_mode = 2
 id = 7
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -16.0
+offset_top = -8.0
+offset_right = 46.0
+offset_bottom = 40.0
+texture = ExtResource("2_54dr6")
+script = ExtResource("3_8627n")

@@ -1,12 +1,15 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APCGear", "APCGear.csproj", "{6C90D685-FCA9-4A36-A3E5-B776DEBD0380}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34004.107
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APCGear", "APCGear.csproj", "{6C90D685-FCA9-4A36-A3E5-B776DEBD0380}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-	Debug|Any CPU = Debug|Any CPU
-	ExportDebug|Any CPU = ExportDebug|Any CPU
-	ExportRelease|Any CPU = ExportRelease|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		ExportDebug|Any CPU = ExportDebug|Any CPU
+		ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{6C90D685-FCA9-4A36-A3E5-B776DEBD0380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -15,5 +18,8 @@ Global
 		{6C90D685-FCA9-4A36-A3E5-B776DEBD0380}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{6C90D685-FCA9-4A36-A3E5-B776DEBD0380}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{6C90D685-FCA9-4A36-A3E5-B776DEBD0380}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
