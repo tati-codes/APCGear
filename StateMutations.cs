@@ -1,16 +1,16 @@
 using APC;
-using APCGear;
-using APCGear.APCIn;
+using APCEvents;
+using APCEvents.APCIn;
 using Godot;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 using state_types;
-using APCGear.KeyAction;
+using APCEvents.KeyAction;
 using WindowsInput;
-using APCGear.APCOut;
-using APCGear.Color;
-using APCGear.UI;
+using APCEvents.APCOut;
+using APCEvents.Color;
+using APCEvents.UI;
 
 public partial class State : Node
 {
@@ -18,29 +18,23 @@ public partial class State : Node
     {
         Keyboard.simulateKeypress(shortcutEventArgs.Hotkey);
     }
-    public void advanceColor(BtnReleasedEventArgs args)
+    public void advanceColor(BtnId args)
     {
-        btn_state btn = buttons[args.Id];
+        btn_state btn = button_table[args.Id];
         if (btn.colorTransitions == null) return;
-        int max_length = btn.colorTransitions.sequence.Length - 1;
-        var seq = btn.colorTransitions.sequence;
-        int current = btn.colorTransitions.current;
-        if (current == max_length)
+        if (btn.colorTransitions is ComplexColorTransition)
         {
-            btn.colorTransitions.current = 0;
+            advanceComplexOnRelease(args);
+            return;
         }
-        else
-        {
-            btn.colorTransitions.current += 1;
-        }
-        buttons[args.Id] = btn;
+        var color = btn.colorTransitions.next();
         switch (btn.type)
         {
             case btn_type.INNER:
-                Pad.Instance.handler.set_inner(args.Id, (inner_state)btn.colorTransitions.currentColor);
+                Pad.Instance.handler.set_inner(args.Id, (inner_state)color);
                 break;
             case btn_type.OUTER:
-                Pad.Instance.handler.set_outer((APC.outer_btns)args.Id, (outer_state)btn.colorTransitions.currentColor);
+                Pad.Instance.handler.set_outer((APC.outer_btns)args.Id, (outer_state)color);
                 break;
             default:
                 break;
@@ -50,19 +44,43 @@ public partial class State : Node
     public void pasteText(TextEventArgs args) => Keyboard.pasteText(args.text);
     public void setButtonColor(ColorTransitions transitions)
     {
-        btn_state btn = selected;
+        btn_state btn = selected_btn;
         switch (btn.type)
         {
             case btn_type.INNER:
-                Pad.Instance.handler.set_inner(selected_btn, (inner_state)transitions.currentColor);
+                Pad.Instance.handler.set_inner(selected_id, (inner_state)transitions.currentColor);
                 break;
             case btn_type.OUTER:
-                Pad.Instance.handler.set_outer((APC.outer_btns)selected_btn, (outer_state)transitions.currentColor);
+                Pad.Instance.handler.set_outer((APC.outer_btns)selected_id, (outer_state)transitions.currentColor);
                 break;
             default:
                 break;
         }
-        Bus.Publish<ChangeColorInUiEvent, BtnSelectedEventArgs>(new BtnSelectedEventArgs() { id = selected_btn });
+        Bus.Publish<ChangeColorInUiEvent, BtnSelectedEventArgs>(new BtnSelectedEventArgs() { id = selected_id });
+    }
+    public void advanceComplexOnRelease(BtnId args)
+    {
+        btn_state btn = button_table[args.Id];
+        ComplexColorTransition transition = btn.colorTransitions as ComplexColorTransition;
+        if (transition != null)
+        {
+            Pad.Instance.handler.set_inner(selected_id, transition.released());
+        }
+    }
+    public void advanceComplexOnPressed(BtnId args) {
+        btn_state btn = button_table[args.Id];
+        ComplexColorTransition transition = btn.colorTransitions as ComplexColorTransition;
+        if (transition != null)
+        {
+            Pad.Instance.handler.set_inner(selected_id, transition.pressed());
+        }
+    }
+    public void changeVolume(SliderChangedEventArgs args)
+    {
+        GD.Print("trying to chanbge");
+        sliders slid = (sliders)args.id;
+        var current = slider_table[slid];
+        AudioHandler.setProcessVolume(current.process, args.value);
     }
 }
 
