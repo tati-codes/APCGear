@@ -1,6 +1,6 @@
 using APC;
-using APCGear.Color;
-using APCGear.UI;
+using APCEvents.Color;
+using APCEvents.UI;
 using Godot;
 using state_types;
 using System;
@@ -31,17 +31,28 @@ public partial class ColorOptions : VBoxContainer
 
 	[Export]
 	public string Group { get; set; } = "";
-
+	[Export]
+	public bool ComplexSelect { get; set; } = false;
     public override void _Ready()
 	{
         this.labelNode.Text = this._label;
-		this.button.ItemSelected += (long color) =>
-		{
-			Bus.Publish<ColorTransitionChangedEvent, ColorTransitionChangedEventArgs>(new() { index = this.index, color = (int)color });
-			Bus.Publish<ImmediateColorChangeEvent, ColorTransitions>(new ColorTransitions() { sequence = new int[1] { (int)color } });
-		};
-		Bus.Subscribe<BtnSelectedEvent, BtnSelectedEventArgs>((args) => CallDeferred("setEnums"));
-		Bus.Subscribe<SetColorEvent, ColorTransitions>(args => CallDeferred("setEnums"));
+		if (ComplexSelect) { 
+
+		} else {
+			this.button.ItemSelected += (long color) => {
+				Bus.Publish<ColorTransitionChangedEvent, ColorTransitionChangedEventArgs>(new() { index = this.index, color = (int)color });
+				if (index == 0) { 
+					Bus.Publish<ImmediateColorChangeEvent, ColorTransitions>(new ColorTransitions() { sequence = new int[1] { (int)color } });
+				}
+			};
+			Bus.Subscribe<BtnSelectedEvent, BtnSelectedEventArgs>((args) => CallDeferred("setEnums"));
+			Bus.Subscribe<SetColorEvent, ColorTransitions>(args => {
+				if (args is not ComplexColorTransition)
+				{
+					CallDeferred("setEnums");
+				}
+			});
+		}
 		button.AddToGroup(Group);
 	}
 	public override void _Process(double delta)
@@ -49,12 +60,11 @@ public partial class ColorOptions : VBoxContainer
 	}
 	public void setEnums()
 	{
-		var btn = State.Instance.selected;
+		var btn = State.Instance.selected_btn;
 		this._current_type = btn.type;
 		if (btn.colorTransitions != null)
 		{
 			int[] sequence = btn.colorTransitions.sequence;
-			GD.Print("SQLEN: ", sequence.Length, " IDX: ", index);
 			if ((sequence.Length - 1) >= index) {
 				button.Select(sequence[index]);
 			} else { 

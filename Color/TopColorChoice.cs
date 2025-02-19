@@ -1,5 +1,5 @@
-using APCGear.Color;
-using APCGear.UI;
+using APCEvents.Color;
+using APCEvents.UI;
 using Godot;
 using state_types;
 using System;
@@ -8,18 +8,23 @@ using System.Collections.Generic;
 public partial class TopColorChoice : OptionButton
 {
 	[Export]
-	public VBoxContainer customs { get; set; }
+	public TabContainer tabContainer { get; set; }
 
-	public readonly string Group = "ColorControlVboxColor";
+	public readonly Dictionary<TransitionType, string> groups = new()
+	{
+		[TransitionType.COMPLEX] = "ComplexColorOption",
+		[TransitionType.CUSTOM_LOOP] = "ColorControlVboxColor"
+    };
      public override void _Ready()
 	{
 		this.ItemSelected += resolve;
+		tabContainer.CurrentTab = 0;
 		Bus.Subscribe<BtnSelectedEvent, BtnSelectedEventArgs>((args) => CallDeferred("on_selected"));
 		Bus.Subscribe<ColorTransitionChangedEvent, ColorTransitionChangedEventArgs>((args => CallDeferred("gather")));
     }
     public void resolve(long id)
 	{
-		var selected = State.Instance.selected;
+		var selected = State.Instance.selected_btn;
 		if (selected != null)
 		{
 			TransitionType enumed = (TransitionType)id;
@@ -31,17 +36,19 @@ public partial class TopColorChoice : OptionButton
 				case TransitionType.CYCLE_SOLIDS:
                     Bus.Publish<SetColorEvent, ColorTransitions>(selected.type == btn_type.INNER ? ColorTransitions.inner_solids : ColorTransitions.outer_solids);
                     break;
-				case TransitionType.CUSTOM:
-					Bus.Publish<SetColorEvent, ColorTransitions>(new ColorTransitions() { color_type = TransitionType.CUSTOM, sequence = Array.Empty<int>(), type = selected.type});;
+				case TransitionType.CUSTOM_LOOP:
+					//FIXME Check if there's already a custom transition, if so fill the enums
+					Bus.Publish<SetColorEvent, ColorTransitions>(new ColorTransitions() { color_type = TransitionType.CUSTOM_LOOP, sequence = new int[1] {0}, type = selected.type});;
 					break;
 				default:
 					break;
 			}
 		}
+		tabContainer.CurrentTab = (int)id;
     }
-	public void gather()
+    public void gather()
 	{
-        var nodes = GetTree().GetNodesInGroup(Group);
+        var nodes = GetTree().GetNodesInGroup(groups[TransitionType.CUSTOM_LOOP]);
 		List<int> ints = new List<int>();	
 		foreach (var node in nodes)
 		{
@@ -51,13 +58,13 @@ public partial class TopColorChoice : OptionButton
 				ints.Add(button.Selected);
 			}
 		}
-		Bus.Publish<SetColorEvent, ColorTransitions>(new ColorTransitions() {color_type = TransitionType.CUSTOM, sequence = ints.ToArray(), type = State.Instance.selected.type});	
+		Bus.Publish<SetColorEvent, ColorTransitions>(new ColorTransitions() {color_type = TransitionType.CUSTOM_LOOP, sequence = ints.ToArray(), type = State.Instance.selected_btn.type});	
     }
 	public void on_selected()
 	{
-        if (State.Instance.selected != null && State.Instance.selected.colorTransitions != null)
+        if (State.Instance.selected_btn != null && State.Instance.selected_btn.colorTransitions != null)
         {
-            var btn = State.Instance.selected;
+            var btn = State.Instance.selected_btn;
             var ttrpe = btn.colorTransitions.color_type;
             this.Select((int)ttrpe);
         }
