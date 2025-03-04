@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 public partial class AudioOptions : OptionButton
 {
+//TODO selected button should have an audio option in the audio section to allow it to be made a mute toggle for the audio
 
 	[Signal]
 	public delegate void AudioSelectedEventHandler(int process_id, string label);
@@ -26,13 +27,10 @@ public partial class AudioOptions : OptionButton
 	{
 		this.Clear();
 		AddItem("None", 0);
+		AddItem("Master", 1);
 		foreach (var items in AudioHandler.sessions)
 		{
 			AddItem(items.DisplayName, items.ProcessId);
 		}
-	}
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
 	}
 }

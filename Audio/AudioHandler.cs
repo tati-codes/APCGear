@@ -11,6 +11,7 @@ using Godot;
 
 public static class AudioHandler
 {
+    //FIXME we should keep audio references via text
     public static CoreAudioDevice ctrl = new CoreAudioController().DefaultPlaybackDevice;
     public static IEnumerable<IAudioSession> sessions { get { return ctrl.SessionController.ActiveSessions(); } }
     public static IEnumerable<string> names { get { return sessions.Select(sesh => sesh.DisplayName); } }
@@ -30,7 +31,15 @@ public static class AudioHandler
     }
     public static void setMasterVolume(int volume) => ctrl.Volume = volume;
     public static void setMasterMute(bool p) => ctrl.Mute(p);
-
+    public static void setMasterMuteToggle() => ctrl.Mute(!ctrl.IsMuted);
+    public static void muteProcess(int process_id)
+    {
+        var process = getProcess(process_id);
+        if (process != null)
+        {
+            process.IsMuted = !process.IsMuted;
+        }
+    }
 }
 public class AudioObserver : IObserver<DevicePropertyChangedArgs>
 {

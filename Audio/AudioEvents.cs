@@ -12,7 +12,12 @@ namespace APCGear.Audio
         public int slider { get; set; }
         public int process { get; set; }
     }
+    public class ProcessID : IAPCArgs
+    {
+        public int process { get; set; }
+    }
     public class AudioSessionsRefreshArgs : IAPCArgs { }
     public class LinkSliderToProcess : APCEvent<LinkSliderArgs> { }
     public class AudioSessionsRefresh: APCEvent<AudioSessionsRefreshArgs> { }
+    public class ButtonMutesProcess : APCEvent<ProcessID> { }
 }
