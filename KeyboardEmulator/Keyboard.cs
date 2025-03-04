@@ -8,7 +8,7 @@ using WindowsInput;
 using WindowsInput.Native;
 using VKC = WindowsInput.Native.VirtualKeyCode;
 
-namespace APCGear
+namespace APCEvents
 {
     public struct Hotkey
     {
@@ -18,6 +18,26 @@ namespace APCGear
         {
             this.charKey = charKey;
             this.mods = mods;
+        }
+
+        public Godot.Collections.Dictionary<string, Variant> export()
+        {
+            Godot.Collections.Array exmods = new Godot.Collections.Array();
+            foreach (var item in mods)
+            {
+                exmods.Add((int)item);
+            }
+            return new Godot.Collections.Dictionary<string, Variant>
+            {
+                {"charKey", (int)charKey},
+                {"mods",  exmods}
+            };
+        }
+        public static Hotkey import(Godot.Collections.Dictionary serial)
+        {
+            VKC charKey = (VKC)serial["charKey"].AsInt32();
+            int[] mods = serial["mods"].AsInt32Array();
+            return new Hotkey(charKey, mods.Select(x => (VKC)x).ToArray());
         }
     }
 
