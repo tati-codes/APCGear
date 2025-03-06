@@ -11,12 +11,7 @@ public partial class ButtonMuter : Control
     {
         options.AudioSelected += (int id, string name) =>
         {
-            Bus.Publish<ButtonMutesProcess, ProcessID>(new ProcessID() { process = id });
+            Bus.Publish<ButtonMutesProcess, Process>(new Process() { name = name, id = id }); 
         };
-    }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
     }
 }

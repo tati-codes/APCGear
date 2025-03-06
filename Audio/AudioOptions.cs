@@ -11,6 +11,7 @@ public partial class AudioOptions : OptionButton
 
 	[Signal]
 	public delegate void AudioSelectedEventHandler(int process_id, string label);
+	Process selectedReferece = Process.nullProcess;
 	public override void _Ready()
 	{
 		update();
@@ -19,6 +20,7 @@ public partial class AudioOptions : OptionButton
 		{
 			var item = GetItemId((int)idx);
 			var name = GetItemText((int)idx);
+            selectedReferece = new Process() { name = name, id = item };
 			EmitSignal(SignalName.AudioSelected, item, name);
 		};
 	}
@@ -28,9 +30,13 @@ public partial class AudioOptions : OptionButton
 		this.Clear();
 		AddItem("None", 0);
 		AddItem("Master", 1);
-		foreach (var items in AudioHandler.sessions)
+		foreach (var item in AudioHandler.processes)
 		{
-			AddItem(items.DisplayName, items.ProcessId);
+			AddItem(item.name, item.id);
+			if (item == selectedReferece) {
+				Select(ItemCount - 1);
+			}
 		}
+		if (selectedReferece.id == 1) Select(1);
 	}
 }

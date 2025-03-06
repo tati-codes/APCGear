@@ -17,15 +17,7 @@ public partial class AudioControl : Control
     public Label label { get; set; }
     public override void _Ready()
 	{
-		options.AudioSelected += (int id, string name) =>
-		{
-				Bus.Publish<LinkSliderToProcess, LinkSliderArgs>(new LinkSliderArgs() { process = id, slider = (int)slider_id});
-		};
+		options.AudioSelected += (int id, string name) => Bus.Publish<LinkSliderToProcess, LinkSliderArgs>(new LinkSliderArgs() { process = new Process() { id = id, name = name }, slider = (int)slider_id});
 		label.Text = Enum.GetName(typeof(sliders), slider_id);
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
 	}
 }
