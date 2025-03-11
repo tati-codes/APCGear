@@ -3,7 +3,6 @@ using APCGear.Audio;
 using Godot;
 using System;
 //TODO auto assign sliders on ready unless they have an assigned process already that is found
-//TODO changed processId from number to text
 public partial class AudioControl : Control
 {
 	// Called when the node enters the scene tree for the first time.

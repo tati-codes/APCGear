@@ -16,7 +16,7 @@ public static class AudioHandler
     public static IEnumerable<IAudioSession> sessions { get { return ctrl.SessionController.ActiveSessions(); } }
     
     public static IEnumerable<Process> processes { get { return sessions.Select(sesh => new Process() { name = sesh.DisplayName, id = sesh.ProcessId}); } }
-    public static IEnumerable<string> names { get { return sessions.Select(sesh => sesh.DisplayName); } } //FIXME use text and id together add processes static
+    public static IEnumerable<string> names { get { return sessions.Select(sesh => sesh.DisplayName); } } 
     public static IAudioSession? getProcess(Process process) {
         if (names.Where(name => process.name == name).ToList().Count() == 1) { //find by name
             return sessions.ToList().Find(sesh => sesh.DisplayName == process.name); 

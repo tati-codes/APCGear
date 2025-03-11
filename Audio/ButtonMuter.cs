@@ -1,4 +1,5 @@
 using APC;
+using APCEvents.UI;
 using APCGear.Audio;
 using Godot;
 using System;
@@ -13,5 +14,13 @@ public partial class ButtonMuter : Control
         {
             Bus.Publish<ButtonMutesProcess, Process>(new Process() { name = name, id = id }); 
         };
+        Bus.Subscribe<BtnSelectedEvent, BtnSelectedEventArgs>(args =>
+        {
+            if (State.Instance.selected_btn != null && State.Instance.selected_btn.process != Process.nullProcess)
+            {
+                options.selectedReferece = State.Instance.selected_btn.process;
+                options.update();
+            }
+        });
     }
 }
