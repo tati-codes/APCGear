@@ -4,6 +4,7 @@ using Godot;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class AudioOptions : OptionButton
 {
@@ -11,7 +12,7 @@ public partial class AudioOptions : OptionButton
 
 	[Signal]
 	public delegate void AudioSelectedEventHandler(int process_id, string label);
-	Process selectedReferece = Process.nullProcess;
+	public Process selectedReferece = Process.nullProcess;
 	public override void _Ready()
 	{
 		update();
@@ -30,12 +31,18 @@ public partial class AudioOptions : OptionButton
 		this.Clear();
 		AddItem("None", 0);
 		AddItem("Master", 1);
-		foreach (var item in AudioHandler.processes)
+		var processes = AudioHandler.processes;
+		foreach (var item in processes)
 		{
 			AddItem(item.name, item.id);
 			if (item == selectedReferece) {
 				Select(ItemCount - 1);
 			}
+		}
+		if (!processes.Contains(selectedReferece) && selectedReferece != Process.nullProcess)
+		{
+			AddItem(selectedReferece.name, selectedReferece.id);
+			Select(ItemCount - 1);
 		}
 		if (selectedReferece.id == 1) Select(1);
 	}

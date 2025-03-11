@@ -1,4 +1,5 @@
 ﻿using APC;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace APCGear.Audio
         {
             if (p.Count != 1)
             {
-                throw new Exception("not the right import");
+                return Process.nullProcess;
             }
             else
             {

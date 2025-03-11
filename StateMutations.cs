@@ -11,6 +11,7 @@ using WindowsInput;
 using APCEvents.APCOut;
 using APCEvents.Color;
 using APCEvents.UI;
+using APCGear.Audio;
 
 public partial class State : Node
 {
@@ -77,10 +78,27 @@ public partial class State : Node
     }
     public void changeVolume(SliderChangedEventArgs args)
     {
-        GD.Print("trying to chanbge");
         sliders slid = (sliders)args.id;
         var current = slider_table[slid];
-        AudioHandler.setProcessVolume(current.process, args.value);
+        if (current.process == Process.nullProcess) { 
+            return; 
+        } else if (current.process.id == 1) {
+            AudioHandler.setMasterVolume(args.value);   
+        } else {
+            AudioHandler.setProcessVolume(current.process, args.value);
+        }
+    }
+    public void mute(Process p)
+    {
+        if (p == Process.nullProcess) { return; }
+        GD.Print("Muting ", p.name);
+        if (p.id == 1)
+        {
+            AudioHandler.setMasterMuteToggle();
+        } else 
+        {
+            AudioHandler.muteProcess(p);
+        }
     }
 }
 

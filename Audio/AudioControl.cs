@@ -19,5 +19,11 @@ public partial class AudioControl : Control
 	{
 		options.AudioSelected += (int id, string name) => Bus.Publish<LinkSliderToProcess, LinkSliderArgs>(new LinkSliderArgs() { process = new Process() { id = id, name = name }, slider = (int)slider_id});
 		label.Text = Enum.GetName(typeof(sliders), slider_id);
+		var state = State.Instance;
+		if (state.slider_table[slider_id].process != Process.nullProcess)
+		{
+			options.selectedReferece = state.slider_table[slider_id].process;
+			options.update();	
+        }
 	}
 }
