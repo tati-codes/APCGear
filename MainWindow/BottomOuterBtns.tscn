@@ -1,0 +1,144 @@
+[gd_scene load_steps=3 format=3 uid="uid://yw6wimanmovr"]
+
+[ext_resource type="PackedScene" uid="uid://cmhd2wcq57ouh" path="res://MainWindow/outer_btn.tscn" id="1_n4bt6"]
+[ext_resource type="FontFile" uid="uid://dn5sep1u4srg5" path="res://assets/fonts/Boxy-Bold-Font/Boxy-Bold.ttf" id="2_w63i1"]
+
+[node name="Control" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 41.0
+offset_right = -540.0
+offset_bottom = -575.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="Up" parent="." instance=ExtResource("1_n4bt6")]
+layout_mode = 2
+id = 64
+
+[node name="UP" type="Label" parent="Up"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = -25.0
+offset_right = 29.0
+offset_bottom = -2.0
+theme_override_fonts/font = ExtResource("2_w63i1")
+theme_override_font_sizes/font_size = 20
+text = "^"
+
+[node name="Down" parent="." instance=ExtResource("1_n4bt6")]
+layout_mode = 2
+id = 65
+
+[node name="DOWN" type="Label" parent="Down"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = -9.0
+offset_right = 44.0
+offset_bottom = 29.0
+rotation = 3.14159
+theme_override_fonts/font = ExtResource("2_w63i1")
+theme_override_font_sizes/font_size = 20
+text = "^"
+
+[node name="Left" parent="." instance=ExtResource("1_n4bt6")]
+layout_mode = 2
+id = 66
+
+[node name="<" type="Label" parent="Left"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 11.0
+theme_override_fonts/font = ExtResource("2_w63i1")
+theme_override_font_sizes/font_size = 20
+text = "<"
+
+[node name="Right" parent="." instance=ExtResource("1_n4bt6")]
+layout_mode = 2
+id = 67
+
+[node name="<" type="Label" parent="Right"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 11.0
+theme_override_fonts/font = ExtResource("2_w63i1")
+theme_override_font_sizes/font_size = 20
+text = ">
+"
+
+[node name="Volume" parent="." instance=ExtResource("1_n4bt6")]
+layout_mode = 2
+id = 68
+
+[node name="<" type="Label" parent="Volume"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -27.0
+offset_right = 36.0
+offset_bottom = 9.0
+theme_override_fonts/font = ExtResource("2_w63i1")
+theme_override_font_sizes/font_size = 20
+text = "vol"
+
+[node name="Pan" parent="." instance=ExtResource("1_n4bt6")]
+layout_mode = 2
+id = 69
+
+[node name="<" type="Label" parent="Pan"]
+layout_mode = 0
+offset_left = -13.0
+offset_top = -28.0
+offset_right = 38.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("2_w63i1")
+theme_override_font_sizes/font_size = 20
+text = "pan"
+
+[node name="Send" parent="." instance=ExtResource("1_n4bt6")]
+layout_mode = 2
+id = 70
+
+[node name="<" type="Label" parent="Send"]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -28.0
+offset_right = 51.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("2_w63i1")
+theme_override_font_sizes/font_size = 20
+text = "send"
+
+[node name="Device" parent="." instance=ExtResource("1_n4bt6")]
+layout_mode = 2
+id = 71
+
+[node name="<" type="Label" parent="Device"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -28.0
+offset_right = 43.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("2_w63i1")
+theme_override_font_sizes/font_size = 20
+text = "dev"
+
+[node name="Shift" parent="." instance=ExtResource("1_n4bt6")]
+layout_mode = 2
+id = 98
+
+[node name="<" type="Label" parent="Shift"]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -28.0
+offset_right = 57.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("2_w63i1")
+theme_override_font_sizes/font_size = 20
+text = "shift"

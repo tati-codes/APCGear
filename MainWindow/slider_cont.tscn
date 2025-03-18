@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://dokfgtwdde8jx"]
+
+[ext_resource type="PackedScene" uid="uid://62mkhtbk74l" path="res://MainWindow/slider.tscn" id="1_1wrob"]
+
+[node name="SliderCont" type="HBoxContainer"]
+anchors_preset = -1
+anchor_right = 0.766
+anchor_bottom = 0.648
+offset_left = 39.0
+offset_top = 48.0
+offset_right = 12.568
+offset_bottom = -263.904
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 68
+
+[node name="Slider" parent="." instance=ExtResource("1_1wrob")]
+layout_mode = 2
+
+[node name="Slider2" parent="." instance=ExtResource("1_1wrob")]
+layout_mode = 2
+
+[node name="Slider3" parent="." instance=ExtResource("1_1wrob")]
+layout_mode = 2
+
+[node name="Slider4" parent="." instance=ExtResource("1_1wrob")]
+layout_mode = 2
+
+[node name="Slider5" parent="." instance=ExtResource("1_1wrob")]
+layout_mode = 2
+
+[node name="Slider6" parent="." instance=ExtResource("1_1wrob")]
+layout_mode = 2
+
+[node name="Slider7" parent="." instance=ExtResource("1_1wrob")]
+layout_mode = 2
+
+[node name="Slider8" parent="." instance=ExtResource("1_1wrob")]
+layout_mode = 2
+
+[node name="Slider9" parent="." instance=ExtResource("1_1wrob")]
+layout_mode = 2

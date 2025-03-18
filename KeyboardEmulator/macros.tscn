@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg1tcm6u1abn6"]
+
+[ext_resource type="Script" path="res://KeyboardEmulator/ShortcutsPanelMainWindow.cs" id="1_nsilu"]
+[ext_resource type="PackedScene" uid="uid://bsredtxkjo5av" path="res://KeyboardEmulator/KeyPicker.tscn" id="2_xaw0m"]
+
+[node name="Macros" type="MarginContainer"]
+script = ExtResource("1_nsilu")
+metadata/_tab_index = 0
+
+[node name="Container" parent="." instance=ExtResource("2_xaw0m")]
+layout_mode = 2

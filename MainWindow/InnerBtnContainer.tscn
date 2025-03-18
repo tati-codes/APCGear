@@ -1,0 +1,315 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxraogioys3do"]
+
+[ext_resource type="PackedScene" uid="uid://cm2f1knkxd60k" path="res://MainWindow/InnerBtn.tscn" id="1_6a43r"]
+[ext_resource type="Texture2D" uid="uid://cl2fpf6av71hk" path="res://assets/selected.png" id="2_54dr6"]
+[ext_resource type="Script" path="res://MainWindow/Selected.cs" id="3_8627n"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Row0" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="InnerButton" parent="VBoxContainer/Row0" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 56
+
+[node name="InnerButton2" parent="VBoxContainer/Row0" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 57
+
+[node name="InnerButton3" parent="VBoxContainer/Row0" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 58
+
+[node name="InnerButton4" parent="VBoxContainer/Row0" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 59
+
+[node name="InnerButton5" parent="VBoxContainer/Row0" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 60
+
+[node name="InnerButton6" parent="VBoxContainer/Row0" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 61
+
+[node name="InnerButton7" parent="VBoxContainer/Row0" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 62
+
+[node name="InnerButton8" parent="VBoxContainer/Row0" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 63
+
+[node name="Row1" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="InnerButton" parent="VBoxContainer/Row1" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 48
+
+[node name="InnerButton2" parent="VBoxContainer/Row1" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 49
+
+[node name="InnerButton3" parent="VBoxContainer/Row1" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 50
+
+[node name="InnerButton4" parent="VBoxContainer/Row1" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 51
+
+[node name="InnerButton5" parent="VBoxContainer/Row1" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 52
+
+[node name="InnerButton6" parent="VBoxContainer/Row1" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 53
+
+[node name="InnerButton7" parent="VBoxContainer/Row1" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 54
+
+[node name="InnerButton8" parent="VBoxContainer/Row1" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 55
+
+[node name="Row2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="InnerButton" parent="VBoxContainer/Row2" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 40
+
+[node name="InnerButton2" parent="VBoxContainer/Row2" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 41
+
+[node name="InnerButton3" parent="VBoxContainer/Row2" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 42
+
+[node name="InnerButton4" parent="VBoxContainer/Row2" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 43
+
+[node name="InnerButton5" parent="VBoxContainer/Row2" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 44
+
+[node name="InnerButton6" parent="VBoxContainer/Row2" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 45
+
+[node name="InnerButton7" parent="VBoxContainer/Row2" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 46
+
+[node name="InnerButton8" parent="VBoxContainer/Row2" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 47
+
+[node name="Row3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="InnerButton" parent="VBoxContainer/Row3" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 32
+
+[node name="InnerButton2" parent="VBoxContainer/Row3" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 33
+
+[node name="InnerButton3" parent="VBoxContainer/Row3" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 34
+
+[node name="InnerButton4" parent="VBoxContainer/Row3" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 35
+
+[node name="InnerButton5" parent="VBoxContainer/Row3" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 36
+
+[node name="InnerButton6" parent="VBoxContainer/Row3" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 37
+
+[node name="InnerButton7" parent="VBoxContainer/Row3" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 38
+
+[node name="InnerButton8" parent="VBoxContainer/Row3" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 39
+
+[node name="Row4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="InnerButton" parent="VBoxContainer/Row4" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 24
+
+[node name="InnerButton2" parent="VBoxContainer/Row4" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 25
+
+[node name="InnerButton3" parent="VBoxContainer/Row4" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 26
+
+[node name="InnerButton4" parent="VBoxContainer/Row4" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 27
+
+[node name="InnerButton5" parent="VBoxContainer/Row4" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 28
+
+[node name="InnerButton6" parent="VBoxContainer/Row4" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 29
+
+[node name="InnerButton7" parent="VBoxContainer/Row4" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 30
+
+[node name="InnerButton8" parent="VBoxContainer/Row4" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 31
+
+[node name="Row5" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="InnerButton" parent="VBoxContainer/Row5" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 16
+
+[node name="InnerButton2" parent="VBoxContainer/Row5" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 17
+
+[node name="InnerButton3" parent="VBoxContainer/Row5" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 18
+
+[node name="InnerButton4" parent="VBoxContainer/Row5" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 19
+
+[node name="InnerButton5" parent="VBoxContainer/Row5" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 20
+
+[node name="InnerButton6" parent="VBoxContainer/Row5" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 21
+
+[node name="InnerButton7" parent="VBoxContainer/Row5" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 22
+
+[node name="InnerButton8" parent="VBoxContainer/Row5" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 23
+
+[node name="Row6" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="InnerButton" parent="VBoxContainer/Row6" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 8
+
+[node name="InnerButton2" parent="VBoxContainer/Row6" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 9
+
+[node name="InnerButton3" parent="VBoxContainer/Row6" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 10
+
+[node name="InnerButton4" parent="VBoxContainer/Row6" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 11
+
+[node name="InnerButton5" parent="VBoxContainer/Row6" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 12
+
+[node name="InnerButton6" parent="VBoxContainer/Row6" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 13
+
+[node name="InnerButton7" parent="VBoxContainer/Row6" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 14
+
+[node name="InnerButton8" parent="VBoxContainer/Row6" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 15
+
+[node name="Row7" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="InnerButton" parent="VBoxContainer/Row7" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+
+[node name="InnerButton2" parent="VBoxContainer/Row7" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 1
+
+[node name="InnerButton3" parent="VBoxContainer/Row7" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 2
+
+[node name="InnerButton4" parent="VBoxContainer/Row7" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 3
+
+[node name="InnerButton5" parent="VBoxContainer/Row7" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 4
+
+[node name="InnerButton6" parent="VBoxContainer/Row7" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 5
+
+[node name="InnerButton7" parent="VBoxContainer/Row7" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 6
+
+[node name="InnerButton8" parent="VBoxContainer/Row7" instance=ExtResource("1_6a43r")]
+layout_mode = 2
+id = 7
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -16.0
+offset_top = -8.0
+offset_right = 46.0
+offset_bottom = 40.0
+texture = ExtResource("2_54dr6")
+script = ExtResource("3_8627n")

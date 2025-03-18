@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://byr0ei2yub0vx"]
+
+[ext_resource type="Script" path="res://MainWindow/RichTextLabel.cs" id="1_pntfb"]
+[ext_resource type="Script" path="res://MainWindow/StateDebuggers.cs" id="2_quvq2"]
+
+[node name="Debug" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 18.1
+anchor_bottom = 10.4
+offset_left = 1002.0
+offset_top = 734.0
+offset_right = 1054.0
+offset_bottom = 518.0
+current_tab = 1
+
+[node name="EventsDebug" type="RichTextLabel" parent="Panel"]
+visible = false
+layout_mode = 2
+scroll_following = true
+script = ExtResource("1_pntfb")
+metadata/_tab_index = 0
+
+[node name="btnstate" type="RichTextLabel" parent="Panel"]
+layout_mode = 2
+script = ExtResource("2_quvq2")
+metadata/_tab_index = 1

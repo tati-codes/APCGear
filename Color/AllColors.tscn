@@ -1,0 +1,104 @@
+[gd_scene load_steps=16 format=3 uid="uid://bwcfc6bxfrsx0"]
+
+[ext_resource type="Script" path="res://Color/TopColorChoice.cs" id="1_16bay"]
+[ext_resource type="StyleBox" uid="uid://r5bkdqnh741i" path="res://Color/BlueBg.tres" id="1_17xx0"]
+[ext_resource type="Script" path="res://Color/RootColorControl.cs" id="1_gnpap"]
+[ext_resource type="PackedScene" uid="uid://dd0vff7buied5" path="res://Color/CustomLoop.tscn" id="2_i0r53"]
+[ext_resource type="PackedScene" uid="uid://3a6veiiacmdg" path="res://Color/ComplexColor.tscn" id="2_p4leq"]
+[ext_resource type="Script" path="res://Color/ToggleControl.cs" id="4_2ooik"]
+[ext_resource type="Texture2D" uid="uid://cavw5gngsnndp" path="res://assets/off.png" id="4_ygoiq"]
+[ext_resource type="Texture2D" uid="uid://csu50noyiw2yl" path="res://assets/green.png" id="5_vuaeg"]
+[ext_resource type="Texture2D" uid="uid://crt8bskxukmee" path="res://assets/green_blink.png" id="6_kttil"]
+[ext_resource type="Texture2D" uid="uid://dai2mxpwi4osa" path="res://assets/red.png" id="7_55tuk"]
+[ext_resource type="Texture2D" uid="uid://d3rkwwnx000j8" path="res://assets/red_blink.png" id="8_y6xgu"]
+[ext_resource type="Texture2D" uid="uid://behxipmie0k0x" path="res://assets/yellow.png" id="9_k4g0f"]
+[ext_resource type="Texture2D" uid="uid://caphdptq76vay" path="res://assets/yellow_blink.png" id="10_a0qqk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_go5qv"]
+
+[sub_resource type="Theme" id="Theme_y46b2"]
+TabContainer/styles/panel = SubResource("StyleBoxEmpty_go5qv")
+
+[node name="AllColors" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 687.0
+offset_bottom = 881.0
+script = ExtResource("1_gnpap")
+
+[node name="Color" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.022
+anchor_bottom = 0.045
+offset_left = 2.0
+offset_top = -13.382
+offset_right = 269.0
+offset_bottom = 596.355
+theme_override_styles/panel = ExtResource("1_17xx0")
+metadata/_tab_index = 2
+
+[node name="TopColorChoice" type="OptionButton" parent="Color" node_paths=PackedStringArray("tabContainer")]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 16.0
+offset_right = 250.0
+offset_bottom = 47.0
+alignment = 1
+selected = 0
+item_count = 3
+popup/item_0/text = "Toggle"
+popup/item_1/text = "Loop"
+popup/item_1/id = 1
+popup/item_2/text = "Custom (Advanced)"
+popup/item_2/id = 2
+script = ExtResource("1_16bay")
+tabContainer = NodePath("../TabContainer")
+
+[node name="TabContainer" type="TabContainer" parent="Color"]
+custom_minimum_size = Vector2(255, 0)
+layout_mode = 0
+offset_left = 18.0
+offset_top = 68.0
+offset_right = 273.0
+offset_bottom = 619.0
+theme = SubResource("Theme_y46b2")
+current_tab = 1
+tabs_visible = false
+
+[node name="Toggle" type="Control" parent="Color/TabContainer" node_paths=PackedStringArray("singleColor")]
+visible = false
+layout_mode = 2
+script = ExtResource("4_2ooik")
+singleColor = NodePath("OptionButton")
+metadata/_tab_index = 0
+
+[node name="OptionButton" type="OptionButton" parent="Color/TabContainer/Toggle"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 26.0
+offset_right = 146.0
+offset_bottom = 66.0
+item_count = 7
+popup/item_0/icon = ExtResource("4_ygoiq")
+popup/item_1/icon = ExtResource("5_vuaeg")
+popup/item_1/id = 1
+popup/item_2/icon = ExtResource("6_kttil")
+popup/item_2/id = 2
+popup/item_3/icon = ExtResource("7_55tuk")
+popup/item_3/id = 3
+popup/item_4/icon = ExtResource("8_y6xgu")
+popup/item_4/id = 4
+popup/item_5/icon = ExtResource("9_k4g0f")
+popup/item_5/id = 5
+popup/item_6/icon = ExtResource("10_a0qqk")
+popup/item_6/id = 6
+
+[node name="CustomLoop" parent="Color/TabContainer" instance=ExtResource("2_i0r53")]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ComplexColor" parent="Color/TabContainer" instance=ExtResource("2_p4leq")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

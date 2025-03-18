@@ -10,6 +10,7 @@
     <Folder Include="plugins\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AudioSwitcher.AudioApi.CoreAudio" Version="3.0.3" />
     <PackageReference Include="InputSimulator" Version="1.0.4" />
 	  <PackageReference Include="Melanchall.DryWetMidi" Version="7.2.0" />
   </ItemGroup>

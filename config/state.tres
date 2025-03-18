@@ -1,0 +1,239 @@
+[gd_resource type="Resource" script_class="StateResource" load_steps=2 format=3 uid="uid://d0genrl78dqmf"]
+
+[ext_resource type="Script" path="res://StateResource.cs" id="1"]
+
+[resource]
+script = ExtResource("1")
+version = 0.4
+slider_table = {
+48: {
+"Master": 1
+},
+49: {
+"Spotify": 2408
+},
+50: {
+"Mozilla Firefox": 16904
+}
+}
+button_table = {
+1: {
+"action": 3,
+"advanceColorOnPress": false,
+"colorTransitionIsComplex": false,
+"colorTransitions": {
+"sequence": PackedInt32Array(1, 1),
+"type": "simple"
+},
+"hotkey": null,
+"label": "",
+"process": {
+"nullProcess": -2
+},
+"text": "",
+"type": 0
+},
+2: {
+"action": 4,
+"advanceColorOnPress": false,
+"colorTransitionIsComplex": false,
+"colorTransitions": {
+"sequence": PackedInt32Array(3, 3),
+"type": "simple"
+},
+"hotkey": null,
+"label": "",
+"process": {
+"None": 0
+},
+"text": "",
+"type": 0
+},
+3: {
+"action": 3,
+"advanceColorOnPress": false,
+"colorTransitionIsComplex": false,
+"colorTransitions": {
+"sequence": PackedInt32Array(5, 5),
+"type": "simple"
+},
+"hotkey": null,
+"label": "",
+"process": {
+"nullProcess": -2
+},
+"text": "",
+"type": 0
+},
+56: {
+"action": 4,
+"advanceColorOnPress": false,
+"colorTransitionIsComplex": false,
+"colorTransitions": {
+"sequence": PackedInt32Array(0, 1),
+"type": "simple"
+},
+"hotkey": null,
+"label": "",
+"process": 9920,
+"text": "",
+"type": 0
+},
+57: {
+"action": 0,
+"advanceColorOnPress": false,
+"colorTransitionIsComplex": false,
+"colorTransitions": {
+"sequence": PackedInt32Array(0, 3),
+"type": "simple"
+},
+"hotkey": {
+"charKey": 9,
+"mods": [18]
+},
+"label": "",
+"process": 1,
+"text": "",
+"type": 0
+},
+58: {
+"action": 4,
+"advanceColorOnPress": false,
+"colorTransitionIsComplex": false,
+"colorTransitions": {
+"sequence": PackedInt32Array(0, 5),
+"type": "simple"
+},
+"hotkey": null,
+"label": "",
+"process": 1,
+"text": "",
+"type": 0
+},
+59: {
+"action": 2,
+"advanceColorOnPress": false,
+"colorTransitionIsComplex": false,
+"colorTransitions": {
+"sequence": PackedInt32Array(0, 5),
+"type": "simple"
+},
+"hotkey": null,
+"label": "",
+"process": -1,
+"text": "pollo",
+"type": 0
+},
+60: {
+"action": 0,
+"advanceColorOnPress": false,
+"colorTransitionIsComplex": false,
+"colorTransitions": {
+"sequence": PackedInt32Array(0, 3, 5, 1),
+"type": "simple"
+},
+"hotkey": {
+"charKey": 71,
+"mods": [92, 17]
+},
+"label": "",
+"process": -1,
+"text": "",
+"type": 0
+},
+64: {
+"action": 4,
+"advanceColorOnPress": false,
+"colorTransitionIsComplex": false,
+"colorTransitions": {
+"sequence": PackedInt32Array(0, 1),
+"type": "simple"
+},
+"hotkey": null,
+"label": "",
+"process": {
+"Master": 1
+},
+"text": "",
+"type": 1
+},
+65: {
+"action": 4,
+"advanceColorOnPress": false,
+"colorTransitionIsComplex": false,
+"colorTransitions": {
+"sequence": PackedInt32Array(0, 1),
+"type": "simple"
+},
+"hotkey": null,
+"label": "",
+"process": {
+"Spotify": 37348
+},
+"text": "",
+"type": 1
+},
+66: {
+"action": 4,
+"advanceColorOnPress": false,
+"colorTransitionIsComplex": false,
+"colorTransitions": {
+"sequence": PackedInt32Array(0, 1),
+"type": "simple"
+},
+"hotkey": null,
+"label": "",
+"process": {
+"Firefox": 21720
+},
+"text": "",
+"type": 1
+},
+67: {
+"action": 4,
+"advanceColorOnPress": false,
+"colorTransitionIsComplex": false,
+"colorTransitions": {
+"sequence": PackedInt32Array(0, 1),
+"type": "simple"
+},
+"hotkey": null,
+"label": "",
+"process": {
+"Street Fighter 6": 29300
+},
+"text": "",
+"type": 1
+},
+84: {
+"action": 0,
+"advanceColorOnPress": false,
+"colorTransitionIsComplex": false,
+"colorTransitions": {
+"sequence": PackedInt32Array(0, 1),
+"type": "simple"
+},
+"hotkey": {
+"charKey": 9,
+"mods": [18]
+},
+"label": "",
+"process": 1,
+"text": "AAAA",
+"type": 1
+},
+85: {
+"action": 2,
+"advanceColorOnPress": false,
+"colorTransitionIsComplex": false,
+"colorTransitions": {
+"sequence": PackedInt32Array(0, 5),
+"type": "simple"
+},
+"hotkey": null,
+"label": "",
+"process": -1,
+"text": "pollo",
+"type": 1
+}
+}

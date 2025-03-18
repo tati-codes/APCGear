@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsredtxkjo5av"]
+
+[ext_resource type="Script" path="res://KeyboardEmulator/CharMenu.cs" id="1_1ccoa"]
+[ext_resource type="Script" path="res://KeyboardEmulator/KeyPicker.cs" id="1_30ytg"]
+[ext_resource type="Script" path="res://KeyboardEmulator/ShortcutsPanelMainWindow.cs" id="1_pv2tv"]
+[ext_resource type="Script" path="res://KeyboardEmulator/Mods.cs" id="2_7km6r"]
+[ext_resource type="PackedScene" uid="uid://cwaa471ihe43w" path="res://KeyboardEmulator/charsbtn.tscn" id="2_vstqy"]
+[ext_resource type="PackedScene" uid="uid://thg1s6mn2nqn" path="res://KeyboardEmulator/modsbtn.tscn" id="3_ccwoy"]
+[ext_resource type="Script" path="res://KeyboardEmulator/AddAnother.cs" id="3_f5n0i"]
+[ext_resource type="Script" path="res://KeyboardEmulator/KeysCont.cs" id="5_885he"]
+
+[node name="Container" type="MarginContainer" node_paths=PackedStringArray("child", "add")]
+offset_left = 84.0
+offset_top = 69.0
+offset_right = 366.0
+offset_bottom = 592.0
+script = ExtResource("1_pv2tv")
+child = NodePath("KeyPicker/KeysCont/Char")
+add = NodePath("KeyPicker/Add")
+
+[node name="KeyPicker" type="Control" parent="."]
+layout_mode = 2
+script = ExtResource("1_30ytg")
+charScene = ExtResource("2_vstqy")
+modsScene = ExtResource("3_ccwoy")
+
+[node name="Add" type="Button" parent="KeyPicker" node_paths=PackedStringArray("mods1", "mods2")]
+layout_mode = 0
+offset_left = 244.0
+offset_top = 8.0
+offset_right = 282.0
+offset_bottom = 39.0
+text = "+"
+script = ExtResource("3_f5n0i")
+mods1 = NodePath("../KeysCont/Mods2")
+mods2 = NodePath("../KeysCont/Mods3")
+
+[node name="KeysCont" type="VBoxContainer" parent="KeyPicker"]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 236.0
+offset_bottom = 448.0
+theme_override_constants/separation = 5
+script = ExtResource("5_885he")
+
+[node name="Char" type="OptionButton" parent="KeyPicker/KeysCont"]
+layout_mode = 2
+script = ExtResource("1_1ccoa")
+
+[node name="Mods" type="OptionButton" parent="KeyPicker/KeysCont"]
+layout_mode = 2
+script = ExtResource("2_7km6r")
+
+[node name="Mods2" type="OptionButton" parent="KeyPicker/KeysCont"]
+visible = false
+layout_mode = 2
+script = ExtResource("2_7km6r")
+
+[node name="Mods3" type="OptionButton" parent="KeyPicker/KeysCont"]
+visible = false
+layout_mode = 2
+script = ExtResource("2_7km6r")
+
+[node name="Button" type="Button" parent="KeyPicker/KeysCont"]
+layout_mode = 2
+text = "save"
+
+[connection signal="pressed" from="KeyPicker/KeysCont/Button" to="KeyPicker/KeysCont" method="_on_button_pressed"]

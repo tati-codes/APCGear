@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://3a6veiiacmdg"]
+
+[ext_resource type="Script" path="res://Color/ComplexColor.cs" id="1_f66ft"]
+[ext_resource type="PackedScene" uid="uid://ces1e826235jc" path="res://Color/ComplexColorTransition.tscn" id="2_x7hm1"]
+
+[node name="ComplexColor" type="GridContainer" node_paths=PackedStringArray("showPressed")]
+offset_right = 212.0
+offset_bottom = 528.0
+script = ExtResource("1_f66ft")
+showPressed = NodePath("CheckBox")
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 2
+text = "Change color on hold"
+flat = true
+alignment = 1
+autowrap_mode = 3
+expand_icon = true
+
+[node name="TransitionHolder" parent="." instance=ExtResource("2_x7hm1")]
+layout_mode = 2
+
+[node name="TransitionHolder2" parent="." instance=ExtResource("2_x7hm1")]
+layout_mode = 2
+TransitionId = 1
+
+[node name="TransitionHolder3" parent="." instance=ExtResource("2_x7hm1")]
+layout_mode = 2
+TransitionId = 2
+
+[node name="TransitionHolder4" parent="." instance=ExtResource("2_x7hm1")]
+layout_mode = 2
+TransitionId = 3
+
+[node name="TransitionHolder5" parent="." instance=ExtResource("2_x7hm1")]
+layout_mode = 2
+TransitionId = 4
+
+[node name="TransitionHolder6" parent="." instance=ExtResource("2_x7hm1")]
+layout_mode = 2
+TransitionId = 5
+
+[node name="TransitionHolder7" parent="." instance=ExtResource("2_x7hm1")]
+layout_mode = 2
+TransitionId = 6

@@ -1,0 +1,109 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd0vff7buied5"]
+
+[ext_resource type="Script" path="res://Color/CustomLoopVisibility.cs" id="1_23j22"]
+[ext_resource type="PackedScene" uid="uid://cqrvhlngngsau" path="res://Color/ColorOptions.tscn" id="1_foqq3"]
+
+[node name="Only Show If Previous Filled And Not Looped" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 65.0
+offset_bottom = 494.0
+script = ExtResource("1_23j22")
+
+[node name="ColorOptions" parent="." instance=ExtResource("1_foqq3")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 82.0
+offset_top = -1.0
+offset_right = 146.0
+offset_bottom = 66.0
+index = 0
+Group = "ColorControlVboxColor"
+
+[node name="ColorOptions2" parent="." instance=ExtResource("1_foqq3")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 82.0
+offset_top = 69.0
+offset_right = 146.0
+offset_bottom = 136.0
+label = "Goes to:"
+index = 1
+Group = "ColorControlVboxColor"
+
+[node name="ColorOptions3" parent="." instance=ExtResource("1_foqq3")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 82.0
+offset_top = 140.0
+offset_right = 146.0
+offset_bottom = 207.0
+label = "Goes to:"
+index = 2
+Group = "ColorControlVboxColor"
+
+[node name="ColorOptions4" parent="." instance=ExtResource("1_foqq3")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 82.0
+offset_top = 211.0
+offset_right = 146.0
+offset_bottom = 278.0
+label = "Goes to:"
+index = 3
+Group = "ColorControlVboxColor"
+
+[node name="ColorOptions5" parent="." instance=ExtResource("1_foqq3")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 82.0
+offset_top = 282.0
+offset_right = 146.0
+offset_bottom = 349.0
+label = "Goes to:"
+index = 4
+Group = "ColorControlVboxColor"
+
+[node name="ColorOptions6" parent="." instance=ExtResource("1_foqq3")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 82.0
+offset_top = 353.0
+offset_right = 146.0
+offset_bottom = 420.0
+label = "Goes to:"
+index = 5
+Group = "ColorControlVboxColor"
+
+[node name="ColorOptions7" parent="." instance=ExtResource("1_foqq3")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 82.0
+offset_top = 424.0
+offset_right = 146.0
+offset_bottom = 491.0
+label = "Goes to:"
+index = 6
+Group = "ColorControlVboxColor"

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://ces1e826235jc"]
+
+[ext_resource type="Script" path="res://Color/TransitionHolder.cs" id="1_ekkdu"]
+[ext_resource type="PackedScene" uid="uid://cqrvhlngngsau" path="res://Color/ColorOptions.tscn" id="2_e37h4"]
+
+[node name="TransitionHolder" type="HBoxContainer" node_paths=PackedStringArray("idle", "pressed", "released")]
+theme_override_constants/separation = 10
+script = ExtResource("1_ekkdu")
+idle = NodePath("IDLE")
+pressed = NodePath("PRESSED")
+released = NodePath("RELEASE")
+
+[node name="IDLE" parent="." instance=ExtResource("2_e37h4")]
+layout_mode = 2
+label = "STARTS AS"
+index = 0
+Group = "ComplexColorOption"
+ComplexSelect = true
+
+[node name="PRESSED" parent="." instance=ExtResource("2_e37h4")]
+layout_mode = 2
+label = "HELD"
+index = 1
+Group = "ComplexColorOption"
+ComplexSelect = true
+
+[node name="RELEASE" parent="." instance=ExtResource("2_e37h4")]
+layout_mode = 2
+label = "ENDS AS"
+index = 2
+Group = "ComplexColorOption"
+ComplexSelect = true

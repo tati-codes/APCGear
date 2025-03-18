@@ -1,0 +1,234 @@
+[gd_scene load_steps=22 format=3 uid="uid://ndqywo7ue6qn"]
+
+[ext_resource type="Texture2D" uid="uid://3i5ffk853yf3" path="res://assets/background.png" id="1_51r2i"]
+[ext_resource type="PackedScene" uid="uid://cxraogioys3do" path="res://MainWindow/InnerBtnContainer.tscn" id="1_qunxc"]
+[ext_resource type="PackedScene" uid="uid://dokfgtwdde8jx" path="res://MainWindow/slider_cont.tscn" id="2_fep41"]
+[ext_resource type="PackedScene" uid="uid://qkgiggm1v8lo" path="res://MainWindow/RightSideOuterButtons.tscn" id="3_t5nki"]
+[ext_resource type="PackedScene" uid="uid://yw6wimanmovr" path="res://MainWindow/BottomOuterBtns.tscn" id="4_qyp5j"]
+[ext_resource type="PackedScene" uid="uid://b4kvfdvlqm0t3" path="res://slider_2.tscn" id="6_h025v"]
+[ext_resource type="FontFile" uid="uid://dn5sep1u4srg5" path="res://assets/fonts/Boxy-Bold-Font/Boxy-Bold.ttf" id="6_hqc16"]
+[ext_resource type="StyleBox" uid="uid://r5bkdqnh741i" path="res://Color/BlueBg.tres" id="7_4bswb"]
+[ext_resource type="PackedScene" uid="uid://bsredtxkjo5av" path="res://KeyboardEmulator/KeyPicker.tscn" id="8_a54is"]
+[ext_resource type="Script" path="res://MainWindow/FunctionPanel.cs" id="8_jon2p"]
+[ext_resource type="PackedScene" uid="uid://bmnew0p7st0x3" path="res://KeyboardEmulator/TextControl.tscn" id="9_0onam"]
+[ext_resource type="PackedScene" uid="uid://bwcfc6bxfrsx0" path="res://Color/AllColors.tscn" id="10_gjpff"]
+[ext_resource type="Script" path="res://MainWindow/Audio.cs" id="11_1baag"]
+[ext_resource type="PackedScene" uid="uid://xdkot3y3gcq8" path="res://Audio/root_audio_control.tscn" id="12_j33xk"]
+[ext_resource type="Texture2D" uid="uid://se52bmmagtuu" path="res://assets/no.png" id="13_01tfm"]
+[ext_resource type="Script" path="res://MainWindow/Indicator.cs" id="14_vdjbi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j1cr1"]
+texture = ExtResource("1_51r2i")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chkyd"]
+bg_color = Color(0.6, 0.6, 0.6, 0.815686)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.8, 0.8, 0.756863)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qhe2x"]
+bg_color = Color(0.42, 0.42, 0.42, 0.784314)
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.529067, 0.529067, 0.529066, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_0q1b7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rib3x"]
+bg_color = Color(0.135, 0.55575, 0.9, 0.435294)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0.560784)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="RootPanel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_j1cr1")
+
+[node name="InnerBtn Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 57.0
+offset_right = 678.0
+offset_bottom = 348.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_chkyd")
+
+[node name="InnerBtns" parent="InnerBtn Panel" instance=ExtResource("1_qunxc")]
+layout_mode = 1
+offset_left = 12.0
+offset_top = 3.0
+offset_right = -7.0
+offset_bottom = -20.0
+
+[node name="OuterBtnsRight" parent="." instance=ExtResource("3_t5nki")]
+layout_mode = 1
+offset_left = 814.0
+offset_top = 101.0
+offset_right = -303.0
+offset_bottom = -151.0
+
+[node name="BottomBtns" parent="." instance=ExtResource("4_qyp5j")]
+layout_mode = 1
+offset_left = 90.0
+offset_top = 586.0
+offset_right = -451.0
+offset_bottom = -30.0
+
+[node name="Volume Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 614.0
+offset_right = 1718.0
+offset_bottom = 953.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qhe2x")
+
+[node name="Volumes" parent="Volume Panel" instance=ExtResource("2_fep41")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 42.0
+offset_top = -27.0
+offset_right = 846.0
+offset_bottom = 317.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="SliderCont" parent="Volume Panel" instance=ExtResource("6_h025v")]
+layout_mode = 1
+offset_left = 58.0
+offset_top = -17.0
+offset_right = 1989.0
+offset_bottom = 449.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1098.0
+offset_top = 15.0
+offset_right = 1294.0
+offset_bottom = 38.0
+text = "Command Mapping"
+
+[node name="OBS" type="TabContainer" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 1002.0
+offset_top = 668.0
+offset_right = 1777.0
+offset_bottom = 890.0
+theme = SubResource("Theme_0q1b7")
+theme_override_fonts/font = ExtResource("6_hqc16")
+theme_override_font_sizes/font_size = 17
+theme_override_styles/panel = SubResource("StyleBoxFlat_rib3x")
+current_tab = 0
+tabs_visible = false
+
+[node name="Connect" type="Panel" parent="OBS"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Volume" type="Panel" parent="OBS"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Panel" type="TabContainer" parent="."]
+layout_mode = 0
+offset_left = 1039.0
+offset_top = 54.0
+offset_right = 1480.0
+offset_bottom = 584.0
+theme_override_fonts/font = ExtResource("6_hqc16")
+theme_override_font_sizes/font_size = 17
+theme_override_styles/panel = ExtResource("7_4bswb")
+tab_alignment = 1
+current_tab = 1
+deselect_enabled = true
+script = ExtResource("8_jon2p")
+
+[node name="Text" type="Control" parent="Panel"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Text" parent="Panel/Text" instance=ExtResource("9_0onam")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -16.0
+offset_right = 0.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sliders" type="Control" parent="Panel"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Node" type="Node" parent="Panel/Sliders" node_paths=PackedStringArray("timer")]
+script = ExtResource("11_1baag")
+timer = NodePath("../Timer")
+
+[node name="Timer" type="Timer" parent="Panel/Sliders"]
+autostart = true
+
+[node name="RootAudioControl" parent="Panel/Sliders" instance=ExtResource("12_j33xk")]
+layout_mode = 1
+offset_left = 4.0
+offset_top = 62.0
+offset_right = 3.09998
+offset_bottom = 62.0
+
+[node name="Macro" type="Control" parent="Panel"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Macro" parent="Panel/Macro" instance=ExtResource("8_a54is")]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = 62.0
+offset_right = 53.0
+offset_bottom = 30.0
+scale = Vector2(1.2, 1.2)
+
+[node name="Colors" parent="." instance=ExtResource("10_gjpff")]
+offset_left = 1500.0
+offset_top = 95.0
+offset_right = 1500.0
+offset_bottom = 95.0
+
+[node name="Indicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1732.0
+offset_top = 890.0
+offset_right = 1799.0
+offset_bottom = 957.0
+texture = ExtResource("13_01tfm")
+expand_mode = 1
+script = ExtResource("14_vdjbi")

@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqrvhlngngsau"]
+
+[ext_resource type="Script" path="res://Color/ColorOptions.cs" id="1_0qdhn"]
+[ext_resource type="Texture2D" uid="uid://cavw5gngsnndp" path="res://assets/off.png" id="2_d7f30"]
+[ext_resource type="Texture2D" uid="uid://crt8bskxukmee" path="res://assets/green_blink.png" id="2_dhv77"]
+[ext_resource type="Texture2D" uid="uid://csu50noyiw2yl" path="res://assets/green.png" id="3_tt8yo"]
+[ext_resource type="Texture2D" uid="uid://dai2mxpwi4osa" path="res://assets/red.png" id="5_dbqor"]
+[ext_resource type="Texture2D" uid="uid://d3rkwwnx000j8" path="res://assets/red_blink.png" id="6_u78wa"]
+[ext_resource type="Texture2D" uid="uid://behxipmie0k0x" path="res://assets/yellow.png" id="7_ch7x6"]
+[ext_resource type="Texture2D" uid="uid://caphdptq76vay" path="res://assets/yellow_blink.png" id="8_bfs77"]
+
+[node name="Control" type="VBoxContainer" node_paths=PackedStringArray("labelNode", "button")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1756.0
+offset_bottom = -904.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0qdhn")
+labelNode = NodePath("Starts as_")
+label = "Starts as"
+button = NodePath("OptionButton")
+
+[node name="Starts as_" type="Label" parent="."]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 2
+item_count = 7
+popup/item_0/icon = ExtResource("2_d7f30")
+popup/item_1/icon = ExtResource("3_tt8yo")
+popup/item_1/id = 1
+popup/item_2/icon = ExtResource("2_dhv77")
+popup/item_2/id = 2
+popup/item_3/icon = ExtResource("5_dbqor")
+popup/item_3/id = 3
+popup/item_4/icon = ExtResource("6_u78wa")
+popup/item_4/id = 4
+popup/item_5/icon = ExtResource("7_ch7x6")
+popup/item_5/id = 5
+popup/item_6/icon = ExtResource("8_bfs77")
+popup/item_6/id = 6
