@@ -34,7 +34,7 @@ public partial class ComplexColor : GridContainer
             }
         }
         ComplexColorTransition result = new ComplexColorTransition() { colors = colors };
-        Bus.Publish<SetColorEvent, ColorTransitions>( result);
+        Bus.Publish<SetComplexColorEvent, ComplexColorTransition>( result);
     }
     public override void _Process(double delta)
 	{

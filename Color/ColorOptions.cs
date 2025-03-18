@@ -41,7 +41,7 @@ public partial class ColorOptions : VBoxContainer
 		} else {
 			this.button.ItemSelected += (long color) => {
 				Bus.Publish<ColorTransitionChangedEvent, ColorTransitionChangedEventArgs>(new() { index = this.index, color = (int)color });
-				if (index == 0) { 
+				if (index == 0) {
 					Bus.Publish<ImmediateColorChangeEvent, ColorTransitions>(new ColorTransitions() { sequence = new int[1] { (int)color } });
 				}
 			};
