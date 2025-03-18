@@ -7,6 +7,8 @@ using System.Collections.Generic;
 
 public partial class TopColorChoice : OptionButton
 {
+	//TODO fill in all the options for the choices here
+	//TODO make all of those options reaction to button selected
 	[Export]
 	public TabContainer tabContainer { get; set; }
 
@@ -19,16 +21,16 @@ public partial class TopColorChoice : OptionButton
 	{
 		this.ItemSelected += resolve;
 		tabContainer.CurrentTab = 0;
-		Bus.Subscribe<BtnSelectedEvent, BtnSelectedEventArgs>((args) => CallDeferred("on_selected"));
+		Bus.Subscribe<BtnSelectedEvent, BtnSelectedEventArgs>((args) => CallDeferred("on_btn_selected"));
 		Bus.Subscribe<ColorTransitionChangedEvent, ColorTransitionChangedEventArgs>((args => CallDeferred("gather")));
     }
-    public void resolve(long id)
+    public void resolve(long id) // i think this one is for event bubbling up
 	{
 		var selected = State.Instance.selected_btn;
 		if (selected != null)
 		{
 			TransitionType enumed = (TransitionType)id;
-			switch (enumed)
+			switch (enumed) //FIXME ADD A TRANSITIONTYPE THAT'S JUST SINGLE
 			{
 				case TransitionType.CYCLE_ALL:
 					Bus.Publish<SetColorEvent, ColorTransitions>(selected.type == btn_type.INNER ? ColorTransitions.inner_all : ColorTransitions.outer_all);
@@ -39,6 +41,9 @@ public partial class TopColorChoice : OptionButton
 				case TransitionType.CUSTOM_LOOP:
 					//FIXME Check if there's already a custom transition, if so fill the enums
 					Bus.Publish<SetColorEvent, ColorTransitions>(new ColorTransitions() { color_type = TransitionType.CUSTOM_LOOP, sequence = new int[1] {0}, type = selected.type});;
+					break;
+				case TransitionType.TOGGLE:
+					Bus.Publish<SetColorEvent, ColorTransitions>(new ColorTransitions() { color_type = TransitionType.TOGGLE, sequence = new int[2] { 0, 1 }, type = selected.type });
 					break;
 				default:
 					break;
@@ -60,15 +65,40 @@ public partial class TopColorChoice : OptionButton
 		}
 		Bus.Publish<SetColorEvent, ColorTransitions>(new ColorTransitions() {color_type = TransitionType.CUSTOM_LOOP, sequence = ints.ToArray(), type = State.Instance.selected_btn.type});	
     }
-	public void on_selected()
+	public void on_btn_selected() 
 	{
-        if (State.Instance.selected_btn != null && State.Instance.selected_btn.colorTransitions != null)
-        {
-            var btn = State.Instance.selected_btn;
-            var ttrpe = btn.colorTransitions.color_type;
-            this.Select((int)ttrpe);
-        }
+        var btn = State.Instance.selected_btn;
+        var ttrpe = btn.colorTransitions.color_type;
+		switch (ttrpe)
+		{
+			case TransitionType.TOGGLE:
+				{
+					switch_to(0);
+                    break;
+				}
+			case TransitionType.CUSTOM_LOOP:
+				{
+                    switch_to(1);
+                    break;
+
+                }
+            case TransitionType.COMPLEX:
+				{
+                    switch_to(2);
+                    break;
+				}
+			default: {
+					switch_to(1);
+                    break;
+                };
+		}
     }
+
+	public void switch_to(int idx)
+	{
+		this.Select(idx);
+		tabContainer.CurrentTab = idx;
+	}
     public override void _Process(double delta)
 	{
 	}

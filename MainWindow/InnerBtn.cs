@@ -41,15 +41,14 @@ public partial class InnerBtn : TextureButton
         //Bus.Subscribe<BtnReleasedEvent, BtnId>((BtnId args) => check_id(args.Id, _Released));
         Bus.Subscribe<BtnSelectedEvent, BtnSelectedEventArgs>((args) => check_id(args.id, () => Bus.Publish<BtnPublishPositionEvent, Position>(new() { pos = this.GlobalPosition })));
         Bus.Subscribe<ChangeColorInUiEvent, BtnSelectedEventArgs>((args) => check_id(args.id, () => CallDeferred("change_color")));
+        change_color();
     }
 
     public void change_color()
     {
         var btn = State.Instance.button_table[id];
         var new_color = (inner_state)State.Instance.button_table[id].colorTransitions.currentColor;
-        //GD.Print(State.Instance.button_table[id].colorTransitions.currentColor);
         //TODO make the ui change color
-        GD.Print(new_color.ToString()); 
         this.TextureNormal = buttonTexts[new_color].normal;
         this.TexturePressed = buttonTexts[new_color].pressed;
     } 
