@@ -1,5 +1,5 @@
 ﻿using APC;
-using APCGear.APCIn;
+using APCEvents.APCIn;
 using state_types;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ public abstract class APCEvent<APCEventArgs> where APCEventArgs : IAPCArgs
     public void Publish(APCEventArgs message) => _actions(message);
 }
 
-namespace APCGear {  
+namespace APCEvents {  
 
     namespace APCOut
     {
@@ -27,22 +27,17 @@ namespace APCGear {
 
         public class IsConnectedEvent : APCEvent<IsConnectedEventArgs> { }
 
-        public class BtnPressedEventArgs : IAPCArgs
+        public class BtnId : IAPCArgs
         {
             public int Id { get; set; }
         }
 
-        public class BtnPressedEvent : APCEvent<BtnPressedEventArgs>
+        public class BtnPressedEvent : APCEvent<BtnId>
         {
 
         }
 
-        public class BtnReleasedEventArgs : IAPCArgs
-        {
-            public int Id { get; set; }
-        }
-
-        public class BtnReleasedEvent : APCEvent<BtnReleasedEventArgs>
+        public class BtnReleasedEvent : APCEvent<BtnId>
         {
 
         }
@@ -86,62 +81,6 @@ namespace APCGear {
 
         public class CycleLedEvent : APCEvent<CycleLedEventArgs> { 
         }
-    }
-
-    namespace Color
-    {
-        public enum TransitionType
-        {
-            CYCLE_ALL,
-            CYCLE_SOLIDS,
-            CUSTOM
-        }
-        public class ColorTransitions : IAPCArgs 
-        {
-            public static ColorTransitions inner_all = new ColorTransitions()
-            {
-                type = btn_type.INNER,
-                sequence = new int[7] { 0, 3, 4, 5, 6, 1, 2 },
-                current = 0,
-                color_type = TransitionType.CYCLE_ALL
-            };
-            public static ColorTransitions inner_solids = new ColorTransitions()
-            {
-                type = btn_type.INNER,
-                sequence = new int[4] { 0, 3, 5, 1 },
-                current = 0,
-                color_type = TransitionType.CYCLE_SOLIDS,
-            };
-            public static ColorTransitions outer_all = new ColorTransitions()
-            {
-                type = btn_type.OUTER,
-                sequence = new int[3] { 0, 1, 2 },
-                current = 0,
-                color_type = TransitionType.CYCLE_ALL
-            };
-
-            public static ColorTransitions outer_solids = new ColorTransitions()
-            {
-                type = btn_type.OUTER,
-                sequence = new int[2] { 0, 1 },
-                current = 0,
-                color_type = TransitionType.CYCLE_SOLIDS
-            };
-
-            public btn_type type;
-            public int[] sequence;
-            public int current;
-            public TransitionType color_type = TransitionType.CUSTOM;
-            public int currentColor { get { return this.sequence[current]; } }
-        }
-        public class SetColorEvent : APCEvent<ColorTransitions> { }
-        public class ColorTransitionChangedEventArgs : IAPCArgs
-        {
-            public int index;
-            public int color;
-        }
-        public class ColorTransitionChangedEvent: APCEvent<ColorTransitionChangedEventArgs> { }
-        public class ImmediateColorChangeEvent: APCEvent<ColorTransitions> { }
     }
 
     namespace KeyAction
