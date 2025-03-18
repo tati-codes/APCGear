@@ -17,12 +17,12 @@ public partial class StateResource : Resource
 {
 
     [Export]
-    public double version = 0.1;
+    public double version = 0.4;
     [Export]
     public Godot.Collections.Dictionary<int, Godot.Collections.Dictionary<string, int>> slider_table = new Godot.Collections.Dictionary<int, Godot.Collections.Dictionary<string, int>>() { };
     [Export]
     public Godot.Collections.Dictionary<int, Variant> button_table = new Godot.Collections.Dictionary<int, Variant>() { };
-    
+    public static readonly string path = "user://config.tres";
     public void sub()
     {
         Bus.Subscribe<ShortcutChanged, ShortcutEventArgs>((args) => this.store_button());
@@ -45,14 +45,27 @@ public partial class StateResource : Resource
         {
             button_table.Add(id, btn.export());
         }
-        ResourceSaver.Save(this, "res://config/state.tres");
+        ResourceSaver.Save(this, path);
     }
+
+    public void clear()
+    {
+        slider_table = new Godot.Collections.Dictionary<int, Godot.Collections.Dictionary<string, int>>() { };
+        button_table = new Godot.Collections.Dictionary<int, Variant>() { };
+    }
+
     public void store_slider(int index)
     {
         GD.Print("Storing slider");
         var P = State.Instance.slider_table[(sliders)index].process.export();
         GD.Print(index, P);
-        slider_table.Add(index, P);
-        ResourceSaver.Save(this, "res://config/state.tres");
+        if (slider_table.ContainsKey(index))
+        {
+            slider_table[index] = P;
+        } else
+        {
+            slider_table.Add(index, P);
+        }
+        ResourceSaver.Save(this, path);
     }
 }

@@ -14,13 +14,12 @@ using System;
 public partial class State : Node
 {
     public double version = 0.4;
-    public StateResource state_resource = ResourceLoader.Load<StateResource>("res://config/state.tres");
+    public StateResource state_resource;
     public static State Instance { get; private set; }
     public int selected_id = -1;
 
     public Godot.Collections.Dictionary<sliders, slider_state> slider_table = new();
     public Godot.Collections.Dictionary<int, state_types.btn_state> button_table = new();
-
 
     public btn_state? selected_btn { get {
             if (selected_id == -1) return null;
@@ -37,20 +36,31 @@ public partial class State : Node
         //TODO autoassign
         //TODO store_button slider stuff
         Instance = this;
-        var outer = Enum.GetValues<outer_btns>();
-        for (int i = 0; i < 64; i++)
+        if (FileAccess.FileExists(StateResource.path))
         {
-            button_table.Add(i, new state_types.btn_state(state_types.btn_type.INNER, state_types.btn_action.NONE));
-        }
-        foreach (var item in outer)
+            state_resource = ResourceLoader.Load<StateResource>(StateResource.path);
+            GD.Print(state_resource.version, version);
+            if (state_resource.version != version)
+            {
+                state_resource.clear();
+                GD.Print("clearing");
+            }
+        } else
         {
-            button_table.Add((int)(item), new state_types.btn_state(state_types.btn_type.OUTER, state_types.btn_action.NONE));
-        }
-        foreach (sliders slider in Enum.GetValues(typeof(sliders)))
-        {
-            slider_table.Add(slider, new slider_state());
+            GD.Print("making");
+            state_resource = ResourceLoader.Load<StateResource>("res://config/state.tres");
         }
 
+        generate_initial_state();
+
+        Bus.Subscribe<IsConnectedEvent, IsConnectedEventArgs>(args =>
+        {
+            connected_to_apc = args.connected;
+            if (connected_to_apc)
+            {
+                remember();
+            }
+        });
         Bus.Subscribe<BtnSelectedEvent, BtnSelectedEventArgs>((BtnSelectedEventArgs args) => { 
             this.selected_id = args.id;
         });
@@ -154,16 +164,39 @@ public partial class State : Node
         Bus.Subscribe<ShortcutEvent, ShortcutEventArgs>(enactShortcut);
         Bus.Subscribe<TextEvent, TextEventArgs>(pasteText);
         Bus.Subscribe<ImmediateColorChangeEvent, ColorTransitions>(setButtonColor);
-        state_resource.sub();
+        state_resource.sub(); //it's here deliberately after the subscriptions so the persistence calls save after being modified
+
+
+    }
+
+    public void generate_initial_state()
+    {
+        var outer = Enum.GetValues<outer_btns>();
+        for (int i = 0; i < 64; i++)
+        {
+            button_table.Add(i, new state_types.btn_state(state_types.btn_type.INNER, state_types.btn_action.NONE));
+        }
+        foreach (var item in outer)
+        {
+            button_table.Add((int)(item), new state_types.btn_state(state_types.btn_type.OUTER, state_types.btn_action.NONE));
+        }
+        foreach (sliders slider in Enum.GetValues(typeof(sliders)))
+        {
+            slider_table.Add(slider, new slider_state());
+        }
+    }
+    public void remember() //loads persisted data
+    {
+        foreach ((int key, var val) in state_resource.slider_table)
+        {
+            slider_table[(sliders)key] = new slider_state() { process = Process.import(val) };
+        }
         foreach ((int key, var val) in state_resource.button_table)
         {
             var p = btn_state.import(val.AsGodotDictionary<string, Variant>());
-            GD.Print("Trying to get back ", key);
             button_table[key] = p;
-        }
-        foreach ((int key, var val) in state_resource.slider_table)
-        {
-            slider_table[(sliders)key] = new slider_state() { process = Process.import(val)};
+            Bus.Publish<BtnSelectedEvent, BtnSelectedEventArgs>(new BtnSelectedEventArgs() { id = key});
+            Bus.Publish<ImmediateColorChangeEvent, ColorTransitions>(p.colorTransitions);
         }
     }
 }
@@ -240,9 +273,9 @@ namespace state_types
                 Godot.Collections.Dictionary<string, int>? process = serial["process"].AsGodotDictionary<string, int>();
                 string label = serial["label"].AsString(); 
                 string text = serial["text"].AsString();
-                string transitionType = serial["colorTransitions"].AsGodotDictionary()["type"].AsString();
+                int transitionType = serial["colorTransitions"].AsGodotDictionary()["type"].AsInt32();
                 Godot.Collections.Dictionary hotkey = serial["hotkey"].AsGodotDictionary();
-                ColorTransitions transition = transitionType == "simple" ?
+                ColorTransitions transition = (TransitionType)transitionType != TransitionType.COMPLEX ?
                     ColorTransitions.import(serial["colorTransitions"].AsGodotDictionary()) :
                     ComplexColorTransition.import(serial["colorTransitions"].AsGodotDictionary());
                 var result = new btn_state((btn_type)t, (btn_action)a) {
@@ -256,6 +289,7 @@ namespace state_types
                 };
                 return result;
             } catch (Exception e) {
+                GD.Print(e);
                 throw new Exception("fucked up importing state");
             }
         }
