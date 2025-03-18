@@ -19,8 +19,11 @@ public partial class ButtonMuter : Control
             if (State.Instance.selected_btn != null && State.Instance.selected_btn.process != Process.nullProcess)
             {
                 options.selectedReferece = State.Instance.selected_btn.process;
-                options.update();
+            } else if (State.Instance.selected_btn != null && State.Instance.selected_btn.process == Process.nullProcess)
+            {
+                options.selectedReferece = Process.nullProcess;
             }
+            options.update();
         });
     }
 }
